@@ -45,6 +45,7 @@ public class RentalService {
         return true;
     }
     public boolean rentCar(Car car, LocalDate startDate, LocalDate endDate) {
+        System.out.println("Renting car " + car.getBrand());
         if (isCarAvailable(car, startDate, endDate)) {
             Rental rental = new Rental(car, startDate, endDate);
             rentals.add(rental);
@@ -60,10 +61,5 @@ public class RentalService {
             return true;
         }
         return false;
-    }
-    public void displayRentals(){
-        for(Rental rental : rentals){
-            System.out.println(rental.getRentalPeriod().toTotalMonths() + " months rental for car " + rental.getCar().getBrand());
-        }
     }
 }

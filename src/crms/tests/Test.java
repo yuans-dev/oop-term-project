@@ -13,11 +13,10 @@ import java.time.Month;
  */
 public class Test {
     public static void main(String[] args) {
-        Car a = new Car(1, "Honda", "Civic", "Car", 10000);
-        Car b = new Car(2, "Toyota", "Vios", "Car", 10000);
-        CarInventory.getInstance().addCar(a);
-        CarInventory.getInstance().addCar(b);
-        RentalService.getInstance().rentCar(CarInventory.getInstance().getCarById(1),LocalDate.now(),LocalDate.of(2025, Month.MARCH, 3));
-        RentalService.getInstance().displayRentals();
+        CarInventory.getInstance().fetchFromDisk();
+
+        CarInventory.getInstance().addCar(new Car(3,"Toyota","Corolla","New",3478));
+        RentalService.getInstance().rentCar(CarInventory.getInstance().getCarById(3),LocalDate.now(),LocalDate.of(2025, Month.MARCH, 3));
+        CarInventory.getInstance().saveToDisk();
     }
 }
