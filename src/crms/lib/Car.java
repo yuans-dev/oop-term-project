@@ -36,6 +36,7 @@ public class Car {
         this.price = price;
     }
     public void setPrice(double price){
+        int x;
         this.price = price;
     }
     public double getPrice(){
