@@ -6,7 +6,6 @@ package crms.lib;
 
 import java.time.LocalDate;
 import java.time.Period;
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Represents a rental transaction

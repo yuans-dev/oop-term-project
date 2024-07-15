@@ -22,12 +22,19 @@ public class Car {
     
     /**
      * 
-     * @param id id
+     * 
      * @param brand brand
      * @param model model
      * @param description description
      * @param price price
      */
+    public Car(String brand, String model, String description, double price){
+        this.id = this.hashCode();
+        this.description = description;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
     public Car(int id, String brand, String model, String description, double price){
         this.id = id;
         this.description = description;
@@ -36,7 +43,6 @@ public class Car {
         this.price = price;
     }
     public void setPrice(double price){
-        int x;
         this.price = price;
     }
     public double getPrice(){
@@ -56,5 +62,8 @@ public class Car {
 
     public String getModel() {
         return model;
+    }
+    public void incrementId(){
+        this.id++;
     }
 }

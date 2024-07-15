@@ -5,11 +5,9 @@
 package crms.lib;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.nio.file.Files;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -31,25 +29,39 @@ public class CarInventory {
      */
     public static CarInventory getInstance(){
         if(instance == null){
-            System.out.println("Creating new instance");
             instance = new CarInventory();
+            instance.fetchFromDisk();
         }
         return instance;
     }
-    public boolean isIdAvailable(int id){
-        for(Car car : cars){
-            if(car.getId() == id) return false;
+    /**
+     * Adds car to list if id property is unique
+     * @param car
+     * @return true if successful in adding
+     */
+    public boolean tryAddCar(Car car){
+        for(Car c:cars){
+            if(c.getId()==car.getId()){
+                return false;
+            }
         }
-        return true;
-    }
-    public void addCar(Car car){
         cars.add(car);
+        return true;
     }
     public Car getCarById(int id){
         for(Car car:cars){
             if(car.getId() == id) return car;
         }
         return null;
+    }
+    public int generateUniqueId(){
+        int uniqueId = this.hashCode();
+        for(Car c: cars){
+            while(uniqueId == c.getId()){
+                uniqueId++;
+            }
+        }
+        return uniqueId;
     }
     public void fetchFromDisk(){
         try{
@@ -67,7 +79,7 @@ public class CarInventory {
                                 Double.parseDouble(lineComponents[4])//price
                         ));
             }
-        }catch(Exception e){
+        }catch(IOException | NumberFormatException e){
             System.out.println("An exception has occured while reading " + filename);
         }
     }
@@ -75,13 +87,13 @@ public class CarInventory {
         try{
             try (FileWriter fileWriter = new FileWriter(filename)) {
                 String toWrite = "";
-                for(Car car : cars){
+                for(Car car : cars){    
                     toWrite += car.getId() + "###" + car.getBrand() + "###" + car.getModel() + "###" + car.getDescription() + "###" + car.getPrice() + "\n";
                 }
                 System.out.println(toWrite);
                 fileWriter.write(toWrite);
             }
-        }catch(Exception e){
+        }catch(IOException e){
             System.out.println("An exception has occured while saving to disk.");
         }
     }

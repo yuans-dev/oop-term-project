@@ -6,6 +6,7 @@ package crms.tests;
 import crms.lib.*;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Period;
 
 /**
  *
@@ -13,10 +14,29 @@ import java.time.Month;
  */
 public class Test {
     public static void main(String[] args) {
-        CarInventory.getInstance().fetchFromDisk();
+        var carInventory = CarInventory.getInstance();
+        var rentalService = RentalService.getInstance();
 
-        CarInventory.getInstance().addCar(new Car(3,"Toyota","Corolla","New",3478));
-        RentalService.getInstance().rentCar(CarInventory.getInstance().getCarById(3),LocalDate.now(),LocalDate.of(2025, Month.MARCH, 3));
-        CarInventory.getInstance().saveToDisk();
+        //Adding cars and rentals
+        for(int i =0; i < 30; i++){
+            var car = new Car("SomeBrand","SomeModel","Some Description",3000);
+            boolean success;
+            
+            //Code for adding cars to ensure uniqueness of id
+            do{
+               success = carInventory.tryAddCar(car);
+               if(!success){
+                   car.incrementId();
+               }
+            }while(!success);
+            
+            //Code for renting
+            rentalService.tryRentCar(car, LocalDate.now(), LocalDate.of(2024, Month.DECEMBER, 1));
+        }
+        
+        //Check if car is available
+        System.out.println(carInventory.getCarById(511754212));
+        System.out.println(rentalService.isCarAvailable(carInventory.getCarById(511754212), LocalDate.now(), LocalDate.of(2024, Month.AUGUST, 15)));
+       
     }
 }
