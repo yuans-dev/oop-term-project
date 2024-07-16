@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -63,6 +64,15 @@ public class CarInventory {
         }
         return uniqueId;
     }
+    public ArrayList<ReportViewModel> generateReport(){
+        var rentalService = RentalService.getInstance();
+        var reports = new ArrayList<ReportViewModel>();
+        for(Car car: cars){
+            var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));
+            reports.add(report);
+        }
+        return reports;
+    }
     public void fetchFromDisk(){
         try{
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -90,7 +100,6 @@ public class CarInventory {
                 for(Car car : cars){    
                     toWrite += car.getId() + "###" + car.getBrand() + "###" + car.getModel() + "###" + car.getDescription() + "###" + car.getPrice() + "\n";
                 }
-                System.out.println(toWrite);
                 fileWriter.write(toWrite);
             }
         }catch(IOException e){

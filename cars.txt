@@ -1,14 +1,14 @@
-670576685###SomeBrand###SomeModel###Some Description###3000.0
-1161082381###SomeBrand###SomeModel###Some Description###3000.0
-1067938912###SomeBrand###SomeModel###Some Description###3000.0
-1637506559###SomeBrand###SomeModel###Some Description###3000.0
-517380410###SomeBrand###SomeModel###Some Description###3000.0
-2117255219###SomeBrand###SomeModel###Some Description###3000.0
-2058534881###SomeBrand###SomeModel###Some Description###3000.0
-1232367853###SomeBrand###SomeModel###Some Description###3000.0
-1673605040###SomeBrand###SomeModel###Some Description###3000.0
-186276003###SomeBrand###SomeModel###Some Description###3000.0
-1681433494###SomeBrand###SomeModel###Some Description###3000.0
+670576685###Toyota###Fortuner###New###3000.0
+1161082381###Honda###Civic###New###3000.0
+1067938912###Audi###Q2###New###3000.0
+1637506559###Audi###A5###New###3000.0
+517380410###Toyota###Prius###New###3000.0
+2117255219###Suzuki###Ciaz###New###3000.0
+2058534881###Kia###Soul###New###3000.0
+1232367853###Kia###Seltos###New###3000.0
+1673605040###Toyota###Corolla###New###3000.0
+186276003###Toyota###Vios###New###3000.0
+1681433494###Toyota###Innova###New###3000.0
 237061348###SomeBrand###SomeModel###Some Description###3000.0
 1685538367###SomeBrand###SomeModel###Some Description###3000.0
 1030870354###SomeBrand###SomeModel###Some Description###3000.0

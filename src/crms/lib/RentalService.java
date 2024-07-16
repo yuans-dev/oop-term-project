@@ -38,7 +38,7 @@ public class RentalService {
     }
     /**
      * Checks if car is available for rental during the given date
-     * @param id
+     * @param car
      * @param startDate
      * @param endDate
      * @return <code>true</code> if car is available
@@ -50,6 +50,18 @@ public class RentalService {
         for (Rental rental : rentals) {
             if (rental.getCar().getId() == car.getId() &&
                 (startDate.isBefore(rental.getEndDate()) && endDate.isAfter(rental.getStartDate()))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isCarAvailableNow(Car car) {
+        if(car == null){
+            return false;
+        }
+        for (Rental rental : rentals) {
+            if (rental.getCar().getId() == car.getId() &&
+                (LocalDate.now().isBefore(rental.getEndDate()) && LocalDate.now().isAfter(rental.getStartDate()))) {
                 return false;
             }
         }
@@ -72,7 +84,6 @@ public class RentalService {
             while(reader.ready()){
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
-                System.out.println(text);
                 rentals.add(
                         new Rental(
                                 carInventory.getCarById(Integer.parseInt(lineComponents[2])),
@@ -91,7 +102,6 @@ public class RentalService {
                 for(Rental rental : rentals){    
                     toWrite += rental.getStartDate().toString() + "###" + rental.getEndDate().toString() + "###" + rental.getCar().getId() + "\n";
                 }
-                System.out.println(toWrite);
                 fileWriter.write(toWrite);
             }
         }catch(IOException e){
