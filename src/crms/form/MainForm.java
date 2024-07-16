@@ -31,23 +31,34 @@ public class MainForm extends javax.swing.JFrame {
         space1 = new javax.swing.JPanel();
         title1 = new javax.swing.JLabel();
         title2 = new javax.swing.JLabel();
+        space2 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        space3 = new javax.swing.JPanel();
+        btnReg = new javax.swing.JButton();
+        space4 = new javax.swing.JPanel();
+        btnReg1 = new javax.swing.JButton();
+        space5 = new javax.swing.JPanel();
+        btnReg2 = new javax.swing.JButton();
         pnlCenter = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(777, 507));
 
+        pnlRoot.setPreferredSize(new java.awt.Dimension(777, 507));
         pnlRoot.setLayout(new java.awt.BorderLayout());
 
         pnlSide.setBackground(new java.awt.Color(21, 25, 28));
         pnlSide.setPreferredSize(new java.awt.Dimension(150, 0));
+        pnlSide.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 6, 8));
 
         space1.setBackground(new java.awt.Color(21, 25, 28));
-        space1.setPreferredSize(new java.awt.Dimension(100, 50));
+        space1.setPreferredSize(new java.awt.Dimension(170, 50));
 
         javax.swing.GroupLayout space1Layout = new javax.swing.GroupLayout(space1);
         space1.setLayout(space1Layout);
         space1Layout.setHorizontalGroup(
             space1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 170, Short.MAX_VALUE)
         );
         space1Layout.setVerticalGroup(
             space1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -57,30 +68,137 @@ public class MainForm extends javax.swing.JFrame {
         pnlSide.add(space1);
 
         title1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        title1.setForeground(new java.awt.Color(204, 204, 204));
+        title1.setForeground(new java.awt.Color(252, 252, 252));
         title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title1.setText("Car");
-        title1.setPreferredSize(new java.awt.Dimension(80, 29));
+        title1.setPreferredSize(new java.awt.Dimension(150, 29));
         pnlSide.add(title1);
 
         title2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        title2.setForeground(new java.awt.Color(204, 204, 204));
+        title2.setForeground(new java.awt.Color(252, 252, 252));
+        title2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title2.setText("Rental");
+        title2.setPreferredSize(new java.awt.Dimension(150, 29));
         pnlSide.add(title2);
+
+        space2.setBackground(new java.awt.Color(21, 25, 28));
+        space2.setPreferredSize(new java.awt.Dimension(170, 10));
+
+        javax.swing.GroupLayout space2Layout = new javax.swing.GroupLayout(space2);
+        space2.setLayout(space2Layout);
+        space2Layout.setHorizontalGroup(
+            space2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 170, Short.MAX_VALUE)
+        );
+        space2Layout.setVerticalGroup(
+            space2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        pnlSide.add(space2);
+
+        jSeparator1.setPreferredSize(new java.awt.Dimension(120, 10));
+        pnlSide.add(jSeparator1);
+
+        space3.setBackground(new java.awt.Color(21, 25, 28));
+        space3.setPreferredSize(new java.awt.Dimension(170, 10));
+
+        javax.swing.GroupLayout space3Layout = new javax.swing.GroupLayout(space3);
+        space3.setLayout(space3Layout);
+        space3Layout.setHorizontalGroup(
+            space3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 170, Short.MAX_VALUE)
+        );
+        space3Layout.setVerticalGroup(
+            space3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        pnlSide.add(space3);
+
+        btnReg.setBackground(new java.awt.Color(21, 25, 28));
+        btnReg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReg.setForeground(new java.awt.Color(204, 204, 204));
+        btnReg.setText("Registration");
+        btnReg.setBorder(null);
+        btnReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegActionPerformed(evt);
+            }
+        });
+        pnlSide.add(btnReg);
+
+        space4.setBackground(new java.awt.Color(21, 25, 28));
+        space4.setPreferredSize(new java.awt.Dimension(170, 10));
+
+        javax.swing.GroupLayout space4Layout = new javax.swing.GroupLayout(space4);
+        space4.setLayout(space4Layout);
+        space4Layout.setHorizontalGroup(
+            space4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 170, Short.MAX_VALUE)
+        );
+        space4Layout.setVerticalGroup(
+            space4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        pnlSide.add(space4);
+
+        btnReg1.setBackground(new java.awt.Color(21, 25, 28));
+        btnReg1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReg1.setForeground(new java.awt.Color(204, 204, 204));
+        btnReg1.setText("Inventory");
+        btnReg1.setBorder(null);
+        btnReg1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReg1ActionPerformed(evt);
+            }
+        });
+        pnlSide.add(btnReg1);
+
+        space5.setBackground(new java.awt.Color(21, 25, 28));
+        space5.setPreferredSize(new java.awt.Dimension(170, 10));
+
+        javax.swing.GroupLayout space5Layout = new javax.swing.GroupLayout(space5);
+        space5.setLayout(space5Layout);
+        space5Layout.setHorizontalGroup(
+            space5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 170, Short.MAX_VALUE)
+        );
+        space5Layout.setVerticalGroup(
+            space5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        pnlSide.add(space5);
+
+        btnReg2.setBackground(new java.awt.Color(21, 25, 28));
+        btnReg2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReg2.setForeground(new java.awt.Color(204, 204, 204));
+        btnReg2.setText("Rent");
+        btnReg2.setBorder(null);
+        btnReg2.setPreferredSize(new java.awt.Dimension(150, 22));
+        btnReg2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReg2ActionPerformed(evt);
+            }
+        });
+        pnlSide.add(btnReg2);
 
         pnlRoot.add(pnlSide, java.awt.BorderLayout.WEST);
 
         pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
+        pnlCenter.setPreferredSize(new java.awt.Dimension(777, 507));
 
         javax.swing.GroupLayout pnlCenterLayout = new javax.swing.GroupLayout(pnlCenter);
         pnlCenter.setLayout(pnlCenterLayout);
         pnlCenterLayout.setHorizontalGroup(
             pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 877, Short.MAX_VALUE)
         );
         pnlCenterLayout.setVerticalGroup(
             pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 1844, Short.MAX_VALUE)
         );
 
         pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
@@ -89,6 +207,18 @@ public class MainForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegActionPerformed
+
+    private void btnReg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReg1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReg1ActionPerformed
+
+    private void btnReg2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReg2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReg2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,10 +256,18 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReg;
+    private javax.swing.JButton btnReg1;
+    private javax.swing.JButton btnReg2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JPanel pnlSide;
     private javax.swing.JPanel space1;
+    private javax.swing.JPanel space2;
+    private javax.swing.JPanel space3;
+    private javax.swing.JPanel space4;
+    private javax.swing.JPanel space5;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;
     // End of variables declaration//GEN-END:variables
