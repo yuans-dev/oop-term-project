@@ -26,18 +26,66 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlRoot = new javax.swing.JPanel();
+        pnlSide = new javax.swing.JPanel();
+        space1 = new javax.swing.JPanel();
+        title1 = new javax.swing.JLabel();
+        title2 = new javax.swing.JLabel();
+        pnlCenter = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        pnlRoot.setLayout(new java.awt.BorderLayout());
+
+        pnlSide.setBackground(new java.awt.Color(21, 25, 28));
+        pnlSide.setPreferredSize(new java.awt.Dimension(150, 0));
+
+        space1.setBackground(new java.awt.Color(21, 25, 28));
+        space1.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        javax.swing.GroupLayout space1Layout = new javax.swing.GroupLayout(space1);
+        space1.setLayout(space1Layout);
+        space1Layout.setHorizontalGroup(
+            space1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        space1Layout.setVerticalGroup(
+            space1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
+
+        pnlSide.add(space1);
+
+        title1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        title1.setForeground(new java.awt.Color(204, 204, 204));
+        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1.setText("Car");
+        title1.setPreferredSize(new java.awt.Dimension(80, 29));
+        pnlSide.add(title1);
+
+        title2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        title2.setForeground(new java.awt.Color(204, 204, 204));
+        title2.setText("Rental");
+        pnlSide.add(title2);
+
+        pnlRoot.add(pnlSide, java.awt.BorderLayout.WEST);
+
+        pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
+
+        javax.swing.GroupLayout pnlCenterLayout = new javax.swing.GroupLayout(pnlCenter);
+        pnlCenter.setLayout(pnlCenterLayout);
+        pnlCenterLayout.setHorizontalGroup(
+            pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlCenterLayout.setVerticalGroup(
+            pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+
+        pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(pnlRoot, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -78,5 +126,11 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel pnlCenter;
+    private javax.swing.JPanel pnlRoot;
+    private javax.swing.JPanel pnlSide;
+    private javax.swing.JPanel space1;
+    private javax.swing.JLabel title1;
+    private javax.swing.JLabel title2;
     // End of variables declaration//GEN-END:variables
 }
