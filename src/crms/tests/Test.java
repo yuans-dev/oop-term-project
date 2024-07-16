@@ -18,11 +18,12 @@ public class Test {
         
         System.out.println("\nReport\n------------------------------");
         for(ReportViewModel report: carInventory.generateReport()){
+            var availability = report.isAvailable() ? "Available":"Rented";
             System.out.println(report.getCar().getId()+ "       \t" + report.getCar().getBrand() + "       \t"
             + report.getCar().getModel()+"       \t"
             + report.getCar().getDescription() + "            \t"
             + report.getCar().getPrice() + "\t"
-            + "Available? " + report.isAvailable());
+            + availability);
         }
     }
 }
