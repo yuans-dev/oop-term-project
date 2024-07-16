@@ -64,8 +64,7 @@ public class CarInventory {
         }
         return uniqueId;
     }
-    public ArrayList<ReportViewModel> generateReport(){
-        var rentalService = RentalService.getInstance();
+    public ArrayList<ReportViewModel> generateReport(RentalService rentalService){
         var reports = new ArrayList<ReportViewModel>();
         for(Car car: cars){
             var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));

@@ -9,10 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,12 +24,13 @@ public class RentalService {
     }
     /**
      * Singleton implementation of RentalService
+     * @param carInventory dependency injection
      * @return Instance of <code>RentalService</code>
      */
-    public static RentalService getInstance(){
+    public static RentalService getInstance(CarInventory carInventory){
         if(instance == null){
             instance = new RentalService();
-            instance.fetchFromDisk();
+            instance.fetchFromDisk(carInventory);
         }
         return instance;
     }
@@ -76,9 +74,8 @@ public class RentalService {
         }
         return false;
     }
-    public void fetchFromDisk(){
+    public void fetchFromDisk(CarInventory carInventory){
         try{
-            var carInventory = CarInventory.getInstance();
             BufferedReader reader = new BufferedReader(new FileReader(filename));
 
             while(reader.ready()){

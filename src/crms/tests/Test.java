@@ -15,9 +15,9 @@ import java.time.Period;
 public class Test {
     public static void main(String[] args) {
         var carInventory = CarInventory.getInstance();
-        
+        var rentalService = RentalService.getInstance(carInventory);
         System.out.println("\nReport\n------------------------------");
-        for(ReportViewModel report: carInventory.generateReport()){
+        for(ReportViewModel report: carInventory.generateReport(rentalService)){
             var availability = report.isAvailable() ? "Available":"Rented";
             System.out.println(report.getCar().getId()+ "       \t" + report.getCar().getBrand() + "       \t"
             + report.getCar().getModel()+"       \t"
