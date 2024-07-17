@@ -39,8 +39,8 @@ public class MainForm extends javax.swing.JFrame {
         btnReg1 = new javax.swing.JButton();
         space5 = new javax.swing.JPanel();
         btnReg2 = new javax.swing.JButton();
-        pnlCenter = new javax.swing.JPanel();
-        tblCar = new javax.swing.JPanel();
+        pnlCar = new javax.swing.JPanel();
+        space7 = new javax.swing.JPanel();
         lblBrand = new javax.swing.JLabel();
         txtBrand = new javax.swing.JTextField();
         lblModel = new javax.swing.JLabel();
@@ -51,12 +51,25 @@ public class MainForm extends javax.swing.JFrame {
         txtPrice = new javax.swing.JTextField();
         space6 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        pnlCenter = new javax.swing.JPanel();
+        spacer8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList3 = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList4 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 507));
 
-        pnlRoot.setPreferredSize(new java.awt.Dimension(777, 507));
+        pnlRoot.setPreferredSize(new java.awt.Dimension(700, 507));
         pnlRoot.setLayout(new java.awt.BorderLayout());
 
         pnlSide.setBackground(new java.awt.Color(21, 25, 28));
@@ -201,142 +214,241 @@ public class MainForm extends javax.swing.JFrame {
 
         pnlRoot.add(pnlSide, java.awt.BorderLayout.WEST);
 
-        pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
-        pnlCenter.setPreferredSize(new java.awt.Dimension(777, 507));
+        pnlCar.setBackground(new java.awt.Color(34, 40, 44));
+        pnlCar.setPreferredSize(new java.awt.Dimension(350, 50));
 
-        tblCar.setBackground(new java.awt.Color(34, 40, 44));
+        space7.setBackground(new java.awt.Color(34, 40, 44));
+        space7.setPreferredSize(new java.awt.Dimension(300, 26));
+
+        javax.swing.GroupLayout space7Layout = new javax.swing.GroupLayout(space7);
+        space7.setLayout(space7Layout);
+        space7Layout.setHorizontalGroup(
+            space7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        space7Layout.setVerticalGroup(
+            space7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 26, Short.MAX_VALUE)
+        );
+
+        pnlCar.add(space7);
 
         lblBrand.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblBrand.setForeground(new java.awt.Color(204, 204, 204));
         lblBrand.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblBrand.setText("Brand");
-        lblBrand.setPreferredSize(new java.awt.Dimension(200, 40));
-        tblCar.add(lblBrand);
+        lblBrand.setPreferredSize(new java.awt.Dimension(250, 40));
+        pnlCar.add(lblBrand);
 
         txtBrand.setBackground(new java.awt.Color(44, 52, 58));
         txtBrand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtBrand.setForeground(new java.awt.Color(255, 255, 255));
         txtBrand.setBorder(null);
         txtBrand.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtBrand.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtBrand.setPreferredSize(new java.awt.Dimension(250, 30));
         txtBrand.setSelectionColor(new java.awt.Color(204, 204, 204));
-        tblCar.add(txtBrand);
+        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrandActionPerformed(evt);
+            }
+        });
+        pnlCar.add(txtBrand);
 
         lblModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblModel.setForeground(new java.awt.Color(204, 204, 204));
         lblModel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblModel.setText("Model");
-        lblModel.setPreferredSize(new java.awt.Dimension(200, 40));
-        tblCar.add(lblModel);
+        lblModel.setPreferredSize(new java.awt.Dimension(250, 40));
+        pnlCar.add(lblModel);
 
         txtModel.setBackground(new java.awt.Color(44, 52, 58));
         txtModel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtModel.setForeground(new java.awt.Color(255, 255, 255));
         txtModel.setBorder(null);
         txtModel.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtModel.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtModel.setPreferredSize(new java.awt.Dimension(250, 30));
         txtModel.setSelectionColor(new java.awt.Color(204, 204, 204));
-        tblCar.add(txtModel);
+        pnlCar.add(txtModel);
 
         lblDesc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblDesc.setForeground(new java.awt.Color(204, 204, 204));
         lblDesc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblDesc.setText("Description");
-        lblDesc.setPreferredSize(new java.awt.Dimension(200, 40));
-        tblCar.add(lblDesc);
+        lblDesc.setPreferredSize(new java.awt.Dimension(250, 40));
+        pnlCar.add(lblDesc);
 
         txtDesc.setBackground(new java.awt.Color(44, 52, 58));
         txtDesc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtDesc.setForeground(new java.awt.Color(255, 255, 255));
         txtDesc.setBorder(null);
         txtDesc.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtDesc.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtDesc.setPreferredSize(new java.awt.Dimension(250, 30));
         txtDesc.setSelectionColor(new java.awt.Color(204, 204, 204));
-        tblCar.add(txtDesc);
+        pnlCar.add(txtDesc);
 
         lblPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblPrice.setForeground(new java.awt.Color(204, 204, 204));
         lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPrice.setText("Price");
-        lblPrice.setPreferredSize(new java.awt.Dimension(200, 40));
-        tblCar.add(lblPrice);
+        lblPrice.setPreferredSize(new java.awt.Dimension(250, 40));
+        pnlCar.add(lblPrice);
 
         txtPrice.setBackground(new java.awt.Color(44, 52, 58));
         txtPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPrice.setForeground(new java.awt.Color(255, 255, 255));
         txtPrice.setBorder(null);
         txtPrice.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtPrice.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtPrice.setPreferredSize(new java.awt.Dimension(250, 30));
         txtPrice.setSelectionColor(new java.awt.Color(204, 204, 204));
-        tblCar.add(txtPrice);
+        pnlCar.add(txtPrice);
 
         space6.setBackground(new java.awt.Color(34, 40, 44));
-        space6.setPreferredSize(new java.awt.Dimension(224, 26));
+        space6.setPreferredSize(new java.awt.Dimension(300, 26));
 
         javax.swing.GroupLayout space6Layout = new javax.swing.GroupLayout(space6);
         space6.setLayout(space6Layout);
         space6Layout.setHorizontalGroup(
             space6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
         space6Layout.setVerticalGroup(
             space6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 26, Short.MAX_VALUE)
         );
 
-        tblCar.add(space6);
+        pnlCar.add(space6);
 
         jButton1.setBackground(new java.awt.Color(44, 52, 58));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Register");
         jButton1.setPreferredSize(new java.awt.Dimension(100, 34));
-        tblCar.add(jButton1);
+        pnlCar.add(jButton1);
 
-        jTable1.setBackground(new java.awt.Color(44, 52, 58));
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Brand", "Model", "Description", "Price"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
+        pnlRoot.add(pnlCar, java.awt.BorderLayout.EAST);
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
+        pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
+        pnlCenter.setPreferredSize(new java.awt.Dimension(777, 507));
+
+        spacer8.setBackground(new java.awt.Color(34, 40, 44));
+        spacer8.setPreferredSize(new java.awt.Dimension(777, 26));
+
+        javax.swing.GroupLayout spacer8Layout = new javax.swing.GroupLayout(spacer8);
+        spacer8.setLayout(spacer8Layout);
+        spacer8Layout.setHorizontalGroup(
+            spacer8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 777, Short.MAX_VALUE)
+        );
+        spacer8Layout.setVerticalGroup(
+            spacer8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 26, Short.MAX_VALUE)
+        );
+
+        pnlCenter.add(spacer8);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Brand");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setPreferredSize(new java.awt.Dimension(168, 17));
+        jLabel1.setRequestFocusEnabled(false);
+        pnlCenter.add(jLabel1);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Model");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel2.setPreferredSize(new java.awt.Dimension(168, 17));
+        jLabel2.setRequestFocusEnabled(false);
+        pnlCenter.add(jLabel2);
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Description");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel3.setPreferredSize(new java.awt.Dimension(168, 17));
+        jLabel3.setRequestFocusEnabled(false);
+        pnlCenter.add(jLabel3);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Price");
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel4.setPreferredSize(new java.awt.Dimension(168, 17));
+        jLabel4.setRequestFocusEnabled(false);
+        pnlCenter.add(jLabel4);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(168, 500));
+
+        jList1.setBackground(new java.awt.Color(44, 52, 58));
+        jList1.setBorder(null);
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jList1.setForeground(new java.awt.Color(204, 204, 204));
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
-        jTable1.setPreferredSize(new java.awt.Dimension(250, 80));
-        jScrollPane1.setViewportView(jTable1);
+        jList1.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        jList1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jList1);
 
-        javax.swing.GroupLayout pnlCenterLayout = new javax.swing.GroupLayout(pnlCenter);
-        pnlCenter.setLayout(pnlCenterLayout);
-        pnlCenterLayout.setHorizontalGroup(
-            pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCenterLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(tblCar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
-        );
-        pnlCenterLayout.setVerticalGroup(
-            pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addGroup(pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-                    .addComponent(tblCar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(68, 68, 68))
-        );
+        pnlCenter.add(jScrollPane1);
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(168, 500));
+
+        jList2.setBackground(new java.awt.Color(44, 52, 58));
+        jList2.setBorder(null);
+        jList2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jList2.setForeground(new java.awt.Color(204, 204, 204));
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList2.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        jList2.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setViewportView(jList2);
+
+        pnlCenter.add(jScrollPane2);
+
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(168, 500));
+
+        jList3.setBackground(new java.awt.Color(44, 52, 58));
+        jList3.setBorder(null);
+        jList3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jList3.setForeground(new java.awt.Color(204, 204, 204));
+        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList3.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        jList3.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(jList3);
+
+        pnlCenter.add(jScrollPane3);
+
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(168, 500));
+
+        jList4.setBackground(new java.awt.Color(44, 52, 58));
+        jList4.setBorder(null);
+        jList4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jList4.setForeground(new java.awt.Color(204, 204, 204));
+        jList4.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList4.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        jList4.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane4.setViewportView(jList4);
+
+        pnlCenter.add(jScrollPane4);
 
         pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
 
@@ -356,6 +468,10 @@ public class MainForm extends javax.swing.JFrame {
     private void btnReg2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReg2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReg2ActionPerformed
+
+    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBrandActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,13 +513,24 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnReg1;
     private javax.swing.JButton btnReg2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<String> jList3;
+    private javax.swing.JList<String> jList4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblPrice;
+    private javax.swing.JPanel pnlCar;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JPanel pnlSide;
@@ -413,7 +540,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel space4;
     private javax.swing.JPanel space5;
     private javax.swing.JPanel space6;
-    private javax.swing.JPanel tblCar;
+    private javax.swing.JPanel space7;
+    private javax.swing.JPanel spacer8;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;
     private javax.swing.JTextField txtBrand;
