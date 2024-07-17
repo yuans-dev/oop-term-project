@@ -40,9 +40,21 @@ public class MainForm extends javax.swing.JFrame {
         space5 = new javax.swing.JPanel();
         btnReg2 = new javax.swing.JButton();
         pnlCenter = new javax.swing.JPanel();
+        tblCar = new javax.swing.JPanel();
+        lblBrand = new javax.swing.JLabel();
+        txtBrand = new javax.swing.JTextField();
+        lblModel = new javax.swing.JLabel();
+        txtModel = new javax.swing.JTextField();
+        lblDesc = new javax.swing.JLabel();
+        txtDesc = new javax.swing.JTextField();
+        lblPrice = new javax.swing.JLabel();
+        txtPrice = new javax.swing.JTextField();
+        space6 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(777, 507));
 
         pnlRoot.setPreferredSize(new java.awt.Dimension(777, 507));
         pnlRoot.setLayout(new java.awt.BorderLayout());
@@ -121,6 +133,7 @@ public class MainForm extends javax.swing.JFrame {
         btnReg.setForeground(new java.awt.Color(204, 204, 204));
         btnReg.setText("Registration");
         btnReg.setBorder(null);
+        btnReg.setPreferredSize(new java.awt.Dimension(150, 22));
         btnReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegActionPerformed(evt);
@@ -149,6 +162,7 @@ public class MainForm extends javax.swing.JFrame {
         btnReg1.setForeground(new java.awt.Color(204, 204, 204));
         btnReg1.setText("Inventory");
         btnReg1.setBorder(null);
+        btnReg1.setPreferredSize(new java.awt.Dimension(150, 22));
         btnReg1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReg1ActionPerformed(evt);
@@ -190,15 +204,138 @@ public class MainForm extends javax.swing.JFrame {
         pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
         pnlCenter.setPreferredSize(new java.awt.Dimension(777, 507));
 
+        tblCar.setBackground(new java.awt.Color(34, 40, 44));
+
+        lblBrand.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblBrand.setForeground(new java.awt.Color(204, 204, 204));
+        lblBrand.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblBrand.setText("Brand");
+        lblBrand.setPreferredSize(new java.awt.Dimension(200, 40));
+        tblCar.add(lblBrand);
+
+        txtBrand.setBackground(new java.awt.Color(44, 52, 58));
+        txtBrand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtBrand.setForeground(new java.awt.Color(255, 255, 255));
+        txtBrand.setBorder(null);
+        txtBrand.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtBrand.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtBrand.setSelectionColor(new java.awt.Color(204, 204, 204));
+        tblCar.add(txtBrand);
+
+        lblModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblModel.setForeground(new java.awt.Color(204, 204, 204));
+        lblModel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblModel.setText("Model");
+        lblModel.setPreferredSize(new java.awt.Dimension(200, 40));
+        tblCar.add(lblModel);
+
+        txtModel.setBackground(new java.awt.Color(44, 52, 58));
+        txtModel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtModel.setForeground(new java.awt.Color(255, 255, 255));
+        txtModel.setBorder(null);
+        txtModel.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtModel.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtModel.setSelectionColor(new java.awt.Color(204, 204, 204));
+        tblCar.add(txtModel);
+
+        lblDesc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblDesc.setForeground(new java.awt.Color(204, 204, 204));
+        lblDesc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblDesc.setText("Description");
+        lblDesc.setPreferredSize(new java.awt.Dimension(200, 40));
+        tblCar.add(lblDesc);
+
+        txtDesc.setBackground(new java.awt.Color(44, 52, 58));
+        txtDesc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDesc.setForeground(new java.awt.Color(255, 255, 255));
+        txtDesc.setBorder(null);
+        txtDesc.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtDesc.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtDesc.setSelectionColor(new java.awt.Color(204, 204, 204));
+        tblCar.add(txtDesc);
+
+        lblPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPrice.setForeground(new java.awt.Color(204, 204, 204));
+        lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblPrice.setText("Price");
+        lblPrice.setPreferredSize(new java.awt.Dimension(200, 40));
+        tblCar.add(lblPrice);
+
+        txtPrice.setBackground(new java.awt.Color(44, 52, 58));
+        txtPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPrice.setForeground(new java.awt.Color(255, 255, 255));
+        txtPrice.setBorder(null);
+        txtPrice.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtPrice.setPreferredSize(new java.awt.Dimension(200, 30));
+        txtPrice.setSelectionColor(new java.awt.Color(204, 204, 204));
+        tblCar.add(txtPrice);
+
+        space6.setBackground(new java.awt.Color(34, 40, 44));
+        space6.setPreferredSize(new java.awt.Dimension(224, 26));
+
+        javax.swing.GroupLayout space6Layout = new javax.swing.GroupLayout(space6);
+        space6.setLayout(space6Layout);
+        space6Layout.setHorizontalGroup(
+            space6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 224, Short.MAX_VALUE)
+        );
+        space6Layout.setVerticalGroup(
+            space6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 26, Short.MAX_VALUE)
+        );
+
+        tblCar.add(space6);
+
+        jButton1.setBackground(new java.awt.Color(44, 52, 58));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Register");
+        jButton1.setPreferredSize(new java.awt.Dimension(100, 34));
+        tblCar.add(jButton1);
+
+        jTable1.setBackground(new java.awt.Color(44, 52, 58));
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Brand", "Model", "Description", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.setPreferredSize(new java.awt.Dimension(250, 80));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout pnlCenterLayout = new javax.swing.GroupLayout(pnlCenter);
         pnlCenter.setLayout(pnlCenterLayout);
         pnlCenterLayout.setHorizontalGroup(
             pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 913, Short.MAX_VALUE)
+            .addGroup(pnlCenterLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(tblCar, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         pnlCenterLayout.setVerticalGroup(
             pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 675, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addGroup(pnlCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                    .addComponent(tblCar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
         );
 
         pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
@@ -259,7 +396,14 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnReg1;
     private javax.swing.JButton btnReg2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblBrand;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblModel;
+    private javax.swing.JLabel lblPrice;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JPanel pnlSide;
@@ -268,7 +412,13 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel space3;
     private javax.swing.JPanel space4;
     private javax.swing.JPanel space5;
+    private javax.swing.JPanel space6;
+    private javax.swing.JPanel tblCar;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;
+    private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextField txtDesc;
+    private javax.swing.JTextField txtModel;
+    private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
 }
