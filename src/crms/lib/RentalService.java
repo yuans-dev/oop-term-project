@@ -85,7 +85,6 @@ public class RentalService {
      * @return True if successful.
      */
     public boolean tryRentCar(Car car, LocalDate startDate, LocalDate endDate) {
-        System.out.println("Renting car " + car.getBrand());
         if (isCarAvailable(car, startDate, endDate)) {
             Rental rental = new Rental(car, startDate, endDate);
             rentals.add(rental);
@@ -93,7 +92,20 @@ public class RentalService {
         }
         return false;
     }
-
+    /**
+     * Gets the number of times a Car has been rented by looking at past rentals.
+     * @param car
+     * @return <code>int</code> representing the number of times a Car has been rented.
+     */
+    public int getTimesRented(Car car){
+        var times = 0;
+        for(Rental rental: rentals){
+            if(rental.getCar().getId() == car.getId()){
+                times++;
+            }
+        }
+        return times;
+    }
     /**
      * Fetches the recorded <code>Car</code> objects within cars.txt.
      * @param carInventory
