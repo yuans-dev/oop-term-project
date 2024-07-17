@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * CarInventory class is responsible for getting the recorded <code>Car</code> objects in the local database
@@ -75,7 +76,7 @@ public class CarInventory {
         }
         return null;
     }
-
+    
     /**
      *
      * @return
@@ -103,7 +104,22 @@ public class CarInventory {
         }
         return reports;
     }
-
+    /**
+     * Generates report and filters results based on provided function.
+     * @param rentalService
+     * @param predicate
+     * @return 
+     */
+    public ArrayList<ReportViewModel> generateReport(RentalService rentalService, Predicate<Car> predicate){
+        var reports = new ArrayList<ReportViewModel>();
+        for(Car car: cars){
+            if(predicate.test(car)){
+                var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));
+                reports.add(report);
+            }
+        }
+        return reports;
+    }
     /**
      *
      */
