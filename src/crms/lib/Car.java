@@ -14,8 +14,8 @@ public class Car {
      * Description of the car
      */
     private String description;
-    private String brand;
-    private String model;
+    private final String brand;
+    private final String model;
     private double price;
     private int id;
 
@@ -81,9 +81,15 @@ public class Car {
      * @return
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
-
+    /**
+     * 
+     * @param description 
+     */
+    public void setDescription(String description){
+        this.description = description;
+    }
     /**
      *
      * @return
