@@ -12,9 +12,9 @@ import java.time.Period;
  * @author Yuan Suarez
  */
 public class Rental {
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private Car car;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+    private final Car car;
     /**
      * Creates a default Rental object with preset properties
      * @param car
