@@ -12,19 +12,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- *
- * @author u1ben
+ * RentalService class is responsible for getting the recorded <code>Rental</code> objects in the local database
+ * and several operations related to it.
+ * @author Yuan Suarez
  */
 public class RentalService {
     private final String filename = "rentals.txt";
     private static RentalService instance;
+
+    /**
+     *
+     */
     public ArrayList<Rental> rentals;
     private RentalService(){
         rentals = new ArrayList<>();
     }
     /**
      * Singleton implementation of RentalService
-     * @param carInventory dependency injection
+     * @param carInventory <code>RentalService</code> is dependent on <code>CarInventory</code>.
      * @return Instance of <code>RentalService</code>
      */
     public static RentalService getInstance(CarInventory carInventory){
@@ -53,6 +58,12 @@ public class RentalService {
         }
         return true;
     }
+
+    /**
+     *
+     * @param car
+     * @return True if <code>Car car</code> is available.
+     */
     public boolean isCarAvailableNow(Car car) {
         if(car == null){
             return false;
@@ -65,6 +76,14 @@ public class RentalService {
         }
         return true;
     }
+
+    /**
+     *
+     * @param car
+     * @param startDate
+     * @param endDate
+     * @return True if successful.
+     */
     public boolean tryRentCar(Car car, LocalDate startDate, LocalDate endDate) {
         System.out.println("Renting car " + car.getBrand());
         if (isCarAvailable(car, startDate, endDate)) {
@@ -74,6 +93,11 @@ public class RentalService {
         }
         return false;
     }
+
+    /**
+     * Fetches the recorded <code>Car</code> objects within cars.txt.
+     * @param carInventory
+     */
     public void fetchFromDisk(CarInventory carInventory){
         try{
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -92,6 +116,10 @@ public class RentalService {
             System.out.println("An exception has occured while reading " + filename);
         }
     }
+
+    /**
+     *
+     */
     public void saveToDisk(){
         try{
             try (FileWriter fileWriter = new FileWriter(filename)) {

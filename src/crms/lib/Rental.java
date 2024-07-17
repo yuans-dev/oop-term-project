@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 /**
- * Represents a rental transaction
- * @author u1ben
+ * Class representing a rental transaction
+ * @author Yuan Suarez
  */
 public class Rental {
     private LocalDate startDate;
@@ -26,6 +26,11 @@ public class Rental {
         startDate = start;
         endDate = end;
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isAvailable(){
         return startDate == null;
     }
@@ -36,12 +41,27 @@ public class Rental {
     public Period getRentalPeriod(){
         return isAvailable() ? null : Period.between(startDate, endDate);
     }
+
+    /**
+     *
+     * @return
+     */
     public Car getCar() {
         return car;
     }
+
+    /**
+     *
+     * @return
+     */
     public LocalDate getStartDate() {
         return startDate;
     }
+
+    /**
+     *
+     * @return
+     */
     public LocalDate getEndDate() {
         return endDate;
     }

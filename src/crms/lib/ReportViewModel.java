@@ -5,19 +5,35 @@
 package crms.lib;
 
 /**
- *
- * @author u1ben
+ * Class representing a report item.
+ * @author Yuan Suarez
  */
 public class ReportViewModel {
     private final Car car;
     private final boolean isAvailable;
+
+    /**
+     *
+     * @param car
+     * @param isAvailable
+     */
     public ReportViewModel(Car car, boolean isAvailable){
         this.car = car;
         this.isAvailable = isAvailable;
     }
+
+    /**
+     *
+     * @return
+     */
     public Car getCar(){
         return this.car;
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isAvailable(){
         return this.isAvailable;
     }

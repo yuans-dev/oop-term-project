@@ -8,12 +8,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- *
- * @author u1ben
+ * CarInventory class is responsible for getting the recorded <code>Car</code> objects in the local database
+ * and several operations related to it.
+ * @author Yuan Suarez
  */
 public class CarInventory {
     private final String filename = "cars.txt";
@@ -36,9 +36,9 @@ public class CarInventory {
         return instance;
     }
     /**
-     * Adds car to list if id property is unique
+     * Adds <code>Car</code> to <code>cars</code> if ID property is unique
      * @param car
-     * @return true if successful in adding
+     * @return True if successful.
      */
     public boolean tryAddCar(Car car){
         for(Car c:cars){
@@ -49,12 +49,37 @@ public class CarInventory {
         cars.add(car);
         return true;
     }
+    /**
+     * Removes <code>Car</code> from <code>cars</code> based on its unique ID
+     * @param car
+     * @return True if successful.
+     */
+    public boolean tryRemoveCar(Car car){
+        for(Car c: cars){
+            if(c.getId()==car.getId()){
+                cars.remove(c);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Car getCarById(int id){
         for(Car car:cars){
             if(car.getId() == id) return car;
         }
         return null;
     }
+
+    /**
+     *
+     * @return
+     */
     public int generateUniqueId(){
         int uniqueId = this.hashCode();
         for(Car c: cars){
@@ -64,6 +89,12 @@ public class CarInventory {
         }
         return uniqueId;
     }
+
+    /**
+     *
+     * @param rentalService
+     * @return
+     */
     public ArrayList<ReportViewModel> generateReport(RentalService rentalService){
         var reports = new ArrayList<ReportViewModel>();
         for(Car car: cars){
@@ -72,6 +103,10 @@ public class CarInventory {
         }
         return reports;
     }
+
+    /**
+     *
+     */
     public void fetchFromDisk(){
         try{
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -92,6 +127,10 @@ public class CarInventory {
             System.out.println("An exception has occured while reading " + filename);
         }
     }
+
+    /**
+     *
+     */
     public void saveToDisk(){
         try{
             try (FileWriter fileWriter = new FileWriter(filename)) {
