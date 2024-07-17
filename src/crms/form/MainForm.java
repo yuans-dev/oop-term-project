@@ -57,14 +57,14 @@ public class MainForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        jSPBrand = new javax.swing.JScrollPane();
+        listBrand = new javax.swing.JList<>();
+        jSPModel = new javax.swing.JScrollPane();
+        listModel = new javax.swing.JList<>();
+        jSPDesc = new javax.swing.JScrollPane();
+        listDesc = new javax.swing.JList<>();
+        jSPPrice = new javax.swing.JScrollPane();
+        listPrice = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(700, 507));
@@ -382,73 +382,73 @@ public class MainForm extends javax.swing.JFrame {
         jLabel4.setRequestFocusEnabled(false);
         pnlCenter.add(jLabel4);
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(168, 500));
+        jSPBrand.setPreferredSize(new java.awt.Dimension(168, 500));
 
-        jList1.setBackground(new java.awt.Color(44, 52, 58));
-        jList1.setBorder(null);
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jList1.setForeground(new java.awt.Color(204, 204, 204));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listBrand.setBackground(new java.awt.Color(44, 52, 58));
+        listBrand.setBorder(null);
+        listBrand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listBrand.setForeground(new java.awt.Color(204, 204, 204));
+        listBrand.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        jList1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jList1);
+        listBrand.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        listBrand.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jSPBrand.setViewportView(listBrand);
 
-        pnlCenter.add(jScrollPane1);
+        pnlCenter.add(jSPBrand);
 
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(168, 500));
+        jSPModel.setPreferredSize(new java.awt.Dimension(168, 500));
 
-        jList2.setBackground(new java.awt.Color(44, 52, 58));
-        jList2.setBorder(null);
-        jList2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jList2.setForeground(new java.awt.Color(204, 204, 204));
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        listModel.setBackground(new java.awt.Color(44, 52, 58));
+        listModel.setBorder(null);
+        listModel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listModel.setForeground(new java.awt.Color(204, 204, 204));
+        listModel.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList2.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        jList2.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setViewportView(jList2);
+        listModel.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        listModel.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jSPModel.setViewportView(listModel);
 
-        pnlCenter.add(jScrollPane2);
+        pnlCenter.add(jSPModel);
 
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(168, 500));
+        jSPDesc.setPreferredSize(new java.awt.Dimension(168, 500));
 
-        jList3.setBackground(new java.awt.Color(44, 52, 58));
-        jList3.setBorder(null);
-        jList3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jList3.setForeground(new java.awt.Color(204, 204, 204));
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
+        listDesc.setBackground(new java.awt.Color(44, 52, 58));
+        listDesc.setBorder(null);
+        listDesc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listDesc.setForeground(new java.awt.Color(204, 204, 204));
+        listDesc.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList3.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        jList3.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setViewportView(jList3);
+        listDesc.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        listDesc.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jSPDesc.setViewportView(listDesc);
 
-        pnlCenter.add(jScrollPane3);
+        pnlCenter.add(jSPDesc);
 
-        jScrollPane4.setPreferredSize(new java.awt.Dimension(168, 500));
+        jSPPrice.setPreferredSize(new java.awt.Dimension(168, 500));
 
-        jList4.setBackground(new java.awt.Color(44, 52, 58));
-        jList4.setBorder(null);
-        jList4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jList4.setForeground(new java.awt.Color(204, 204, 204));
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
+        listPrice.setBackground(new java.awt.Color(44, 52, 58));
+        listPrice.setBorder(null);
+        listPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        listPrice.setForeground(new java.awt.Color(204, 204, 204));
+        listPrice.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList4.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        jList4.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane4.setViewportView(jList4);
+        listPrice.setSelectionBackground(new java.awt.Color(34, 40, 44));
+        listPrice.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jSPPrice.setViewportView(listPrice);
 
-        pnlCenter.add(jScrollPane4);
+        pnlCenter.add(jSPPrice);
 
         pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
 
@@ -517,19 +517,19 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jSPBrand;
+    private javax.swing.JScrollPane jSPDesc;
+    private javax.swing.JScrollPane jSPModel;
+    private javax.swing.JScrollPane jSPPrice;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblPrice;
+    private javax.swing.JList<String> listBrand;
+    private javax.swing.JList<String> listDesc;
+    private javax.swing.JList<String> listModel;
+    private javax.swing.JList<String> listPrice;
     private javax.swing.JPanel pnlCar;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
