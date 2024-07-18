@@ -4,17 +4,26 @@
  */
 package crms.form;
 
+import crms.lib.CarInventory;
+import crms.lib.RentalService;
+import crms.lib.ReportViewModel;
+import crms.lib.gui.ReportTableModel;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author u1ben
  */
 public class MainForm extends javax.swing.JFrame {
-
+    private CarInventory carInventory;
+    private RentalService rentalService;
     /**
      * Creates new form MainForm
      */
     public MainForm() {
+        
         initComponents();
+        initializeDatabase();
     }
 
     /**
@@ -53,21 +62,10 @@ public class MainForm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         pnlCenter = new javax.swing.JPanel();
         spacer8 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jSPBrand = new javax.swing.JScrollPane();
-        listBrand = new javax.swing.JList<>();
-        jSPModel = new javax.swing.JScrollPane();
-        listModel = new javax.swing.JList<>();
-        jSPDesc = new javax.swing.JScrollPane();
-        listDesc = new javax.swing.JList<>();
-        jSPPrice = new javax.swing.JScrollPane();
-        listPrice = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        reportsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 507));
 
         pnlRoot.setPreferredSize(new java.awt.Dimension(700, 507));
         pnlRoot.setLayout(new java.awt.BorderLayout());
@@ -329,6 +327,9 @@ public class MainForm extends javax.swing.JFrame {
 
         pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
         pnlCenter.setPreferredSize(new java.awt.Dimension(777, 507));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
+        flowLayout1.setAlignOnBaseline(true);
+        pnlCenter.setLayout(flowLayout1);
 
         spacer8.setBackground(new java.awt.Color(34, 40, 44));
         spacer8.setPreferredSize(new java.awt.Dimension(777, 26));
@@ -346,109 +347,20 @@ public class MainForm extends javax.swing.JFrame {
 
         pnlCenter.add(spacer8);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Brand");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setPreferredSize(new java.awt.Dimension(168, 17));
-        jLabel1.setRequestFocusEnabled(false);
-        pnlCenter.add(jLabel1);
+        reportsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(reportsTable);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Model");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setPreferredSize(new java.awt.Dimension(168, 17));
-        jLabel2.setRequestFocusEnabled(false);
-        pnlCenter.add(jLabel2);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Description");
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setPreferredSize(new java.awt.Dimension(168, 17));
-        jLabel3.setRequestFocusEnabled(false);
-        pnlCenter.add(jLabel3);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Price");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setPreferredSize(new java.awt.Dimension(168, 17));
-        jLabel4.setRequestFocusEnabled(false);
-        pnlCenter.add(jLabel4);
-
-        jSPBrand.setPreferredSize(new java.awt.Dimension(168, 500));
-
-        listBrand.setBackground(new java.awt.Color(44, 52, 58));
-        listBrand.setBorder(null);
-        listBrand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        listBrand.setForeground(new java.awt.Color(204, 204, 204));
-        listBrand.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listBrand.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        listBrand.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jSPBrand.setViewportView(listBrand);
-
-        pnlCenter.add(jSPBrand);
-
-        jSPModel.setPreferredSize(new java.awt.Dimension(168, 500));
-
-        listModel.setBackground(new java.awt.Color(44, 52, 58));
-        listModel.setBorder(null);
-        listModel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        listModel.setForeground(new java.awt.Color(204, 204, 204));
-        listModel.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listModel.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        listModel.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jSPModel.setViewportView(listModel);
-
-        pnlCenter.add(jSPModel);
-
-        jSPDesc.setPreferredSize(new java.awt.Dimension(168, 500));
-
-        listDesc.setBackground(new java.awt.Color(44, 52, 58));
-        listDesc.setBorder(null);
-        listDesc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        listDesc.setForeground(new java.awt.Color(204, 204, 204));
-        listDesc.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listDesc.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        listDesc.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jSPDesc.setViewportView(listDesc);
-
-        pnlCenter.add(jSPDesc);
-
-        jSPPrice.setPreferredSize(new java.awt.Dimension(168, 500));
-
-        listPrice.setBackground(new java.awt.Color(44, 52, 58));
-        listPrice.setBorder(null);
-        listPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        listPrice.setForeground(new java.awt.Color(204, 204, 204));
-        listPrice.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        listPrice.setSelectionBackground(new java.awt.Color(34, 40, 44));
-        listPrice.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jSPPrice.setViewportView(listPrice);
-
-        pnlCenter.add(jSPPrice);
+        pnlCenter.add(jScrollPane1);
 
         pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
 
@@ -507,33 +419,30 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }
+    private void initializeDatabase(){
+        carInventory = CarInventory.getInstance();
+        rentalService = RentalService.getInstance(carInventory);
+        DefaultListModel<String> reports = new DefaultListModel<>();
+        ReportTableModel reportsTable = new ReportTableModel(carInventory.generateReport(rentalService));
+        this.reportsTable.setModel(reportsTable);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnReg1;
     private javax.swing.JButton btnReg2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jSPBrand;
-    private javax.swing.JScrollPane jSPDesc;
-    private javax.swing.JScrollPane jSPModel;
-    private javax.swing.JScrollPane jSPPrice;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblPrice;
-    private javax.swing.JList<String> listBrand;
-    private javax.swing.JList<String> listDesc;
-    private javax.swing.JList<String> listModel;
-    private javax.swing.JList<String> listPrice;
     private javax.swing.JPanel pnlCar;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JPanel pnlSide;
+    private javax.swing.JTable reportsTable;
     private javax.swing.JPanel space1;
     private javax.swing.JPanel space2;
     private javax.swing.JPanel space3;
