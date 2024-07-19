@@ -12,6 +12,7 @@ import crms.lib.gui.RentDateVerifier;
 import crms.lib.gui.ReportTableModel;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
@@ -580,6 +581,7 @@ public class MainForm extends javax.swing.JFrame {
     private void registerCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButtonActionPerformed
         //validate input
         if (idTextField_remove.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Missing parameters");
             return;
         }
         try {
@@ -593,6 +595,7 @@ public class MainForm extends javax.swing.JFrame {
     private void registerCarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButton1ActionPerformed
         //validate input
         if (brandTextField_add.getText().isBlank() || modelTextField_add.getText().isBlank() || descriptionTextField_add.getText().isBlank() || priceTextField_add.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Missing parameters");
             return;
         }
         try {
@@ -614,7 +617,25 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_descriptionTextField_addActionPerformed
 
     private void rentCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentCarButtonActionPerformed
-        // TODO add your handling code here:
+        //validate input
+        if (idTextField_rent.getText().isBlank() || rentFromDate_rent.getText().isBlank() || rentUntilDate_rent.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this, "Missing parameters");
+            return;
+        }
+        var formatter = DateTimeFormatter.ofPattern("M/d/yy");
+        var startDate = LocalDate.parse(rentFromDate_rent.getText(), formatter);
+        var endDate = LocalDate.parse(rentUntilDate_rent.getText(), formatter);
+        if (startDate.isEqual(endDate) || startDate.isAfter(endDate)) {
+            JOptionPane.showMessageDialog(this, "Minimum rental period is 1 day");
+            return;
+        }
+        var success = rentalService.tryRentCar(carInventory.getCarById(Integer.parseInt(idTextField_rent.getText().trim())), startDate, endDate);
+        if (!success) {
+            JOptionPane.showMessageDialog(this, "Unit is not available");
+        } else {
+            updateTable();
+        }
+
     }//GEN-LAST:event_rentCarButtonActionPerformed
 
     private void idTextField_rentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextField_rentActionPerformed
