@@ -49,9 +49,9 @@ public class Car {
      */
     public Car(int id, String brand, String model, String description, double price) {
         this.id = id;
-        this.description = description;
-        this.brand = brand;
-        this.model = model;
+        this.description = description.trim();
+        this.brand = brand.trim();
+        this.model = model.trim();
         this.price = price;
     }
 

@@ -4,7 +4,7 @@
  */
 package crms.lib.gui;
 
-import crms.lib.ReportViewModel;
+import crms.lib.Report;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -14,10 +14,10 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ReportTableModel extends AbstractTableModel {
 
-    private final ArrayList<ReportViewModel> reports;
+    private final ArrayList<Report> reports;
     private final String[] columnNames = {"ID", "Brand", "Model", "Description", "Availability", "Price (php/day)"};
 
-    public ReportTableModel(ArrayList<ReportViewModel> reports) {
+    public ReportTableModel(ArrayList<Report> reports) {
         this.reports = reports;
     }
 
@@ -33,7 +33,7 @@ public class ReportTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        ReportViewModel report = reports.get(rowIndex);
+        Report report = reports.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return report.getCar().getId();
@@ -52,7 +52,7 @@ public class ReportTableModel extends AbstractTableModel {
         }
     }
 
-    public ReportViewModel getReportAt(int rowIndex) {
+    public Report getReportAt(int rowIndex) {
         return reports.get(rowIndex);
     }
 

@@ -95,10 +95,10 @@ public class CarInventory {
      * @param rentalService
      * @return
      */
-    public ArrayList<ReportViewModel> generateReport(RentalService rentalService) {
-        var reports = new ArrayList<ReportViewModel>();
+    public ArrayList<Report> generateReport(RentalService rentalService) {
+        var reports = new ArrayList<Report>();
         for (Car car : cars) {
-            var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));
+            var report = new Report(car, rentalService.isCarAvailableNow(car));
             reports.add(report);
         }
         return reports;
@@ -111,11 +111,11 @@ public class CarInventory {
      * @param predicate
      * @return
      */
-    public ArrayList<ReportViewModel> generateReport(RentalService rentalService, Predicate<Car> predicate) {
-        var reports = new ArrayList<ReportViewModel>();
+    public ArrayList<Report> generateReport(RentalService rentalService, Predicate<Car> predicate) {
+        var reports = new ArrayList<Report>();
         for (Car car : cars) {
             if (predicate.test(car)) {
-                var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));
+                var report = new Report(car, rentalService.isCarAvailableNow(car));
                 reports.add(report);
             }
         }

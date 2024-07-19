@@ -68,6 +68,14 @@ public class RentalService {
         return true;
     }
 
+    public ArrayList<Rental> generateReport() {
+        var newList = new ArrayList<Rental>();//create new arraylist so rentals cannot be modified directly
+        for (Rental rental : rentals) {
+            newList.add(rental);
+        }
+        return newList;
+    }
+
     /**
      *
      * @param car

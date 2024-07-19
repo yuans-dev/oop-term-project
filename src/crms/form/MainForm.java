@@ -6,9 +6,11 @@ package crms.form;
 
 import crms.lib.Car;
 import crms.lib.CarInventory;
+import crms.lib.Rental;
 import crms.lib.RentalService;
-import crms.lib.ReportViewModel;
+import crms.lib.Report;
 import crms.lib.gui.RentDateVerifier;
+import crms.lib.gui.RentalTableModel;
 import crms.lib.gui.ReportTableModel;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +29,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private CarInventory carInventory;
     private RentalService rentalService;
-    private ReportViewModel currentlySelectedReport;
+    private Report currentlySelectedReport;
 
     /**
      * Creates new form MainForm
@@ -103,7 +105,9 @@ public class MainForm extends javax.swing.JFrame {
         priceMinTextField_report = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         priceMaxTextField_report = new javax.swing.JTextField();
-        generateButton = new javax.swing.JButton();
+        generateUnitsReportButton = new javax.swing.JButton();
+        generateRentalsReportButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
         pnlCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportsTable = new javax.swing.JTable();
@@ -698,23 +702,51 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         reportControls.add(priceMaxTextField_report, gridBagConstraints);
 
-        generateButton.setBackground(new java.awt.Color(44, 52, 58));
-        generateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        generateButton.setForeground(new java.awt.Color(204, 204, 204));
-        generateButton.setText("Generate");
-        generateButton.addActionListener(new java.awt.event.ActionListener() {
+        generateUnitsReportButton.setBackground(new java.awt.Color(44, 52, 58));
+        generateUnitsReportButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        generateUnitsReportButton.setForeground(new java.awt.Color(204, 204, 204));
+        generateUnitsReportButton.setText("Generate units report");
+        generateUnitsReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generateButtonActionPerformed(evt);
+                generateUnitsReportButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
-        reportControls.add(generateButton, gridBagConstraints);
+        reportControls.add(generateUnitsReportButton, gridBagConstraints);
+
+        generateRentalsReportButton.setBackground(new java.awt.Color(44, 52, 58));
+        generateRentalsReportButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        generateRentalsReportButton.setForeground(new java.awt.Color(204, 204, 204));
+        generateRentalsReportButton.setText("Generate rentals report");
+        generateRentalsReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateRentalsReportButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
+        reportControls.add(generateRentalsReportButton, gridBagConstraints);
+
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        reportControls.add(jSeparator2, gridBagConstraints);
 
         sideTab.addTab("Reports", reportControls);
 
@@ -820,7 +852,7 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_modelTextField_addActionPerformed
 
-    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+    private void generateUnitsReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateUnitsReportButtonActionPerformed
         var brand = brandTextField_report.getText().toLowerCase();
         var model = modelTextField_report.getText().toLowerCase();
         var description = descriptionTextField_report.getText().toLowerCase();
@@ -839,7 +871,12 @@ public class MainForm extends javax.swing.JFrame {
                 .collect(Collectors.toCollection(ArrayList::new));
 
         updateTable(filterResult);
-    }//GEN-LAST:event_generateButtonActionPerformed
+    }//GEN-LAST:event_generateUnitsReportButtonActionPerformed
+
+    private void generateRentalsReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateRentalsReportButtonActionPerformed
+
+        updateTableRental(rentalService.generateReport());
+    }//GEN-LAST:event_generateRentalsReportButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -921,11 +958,15 @@ public class MainForm extends javax.swing.JFrame {
                 int selectedRow = reportsTable.getSelectedRow();
                 int selectedColumn = reportsTable.getSelectedColumn();
 
-                if (selectedRow != -1 && selectedColumn != -1) {
-                    ReportTableModel reportsModel = (ReportTableModel) reportsTable.getModel();
-                    currentlySelectedReport = reportsModel.getReportAt(selectedRow);
-                    idTextField_rent.setText(Integer.toString(currentlySelectedReport.getCar().getId()));
-                    idTextField_remove.setText(Integer.toString(currentlySelectedReport.getCar().getId()));
+                try {
+                    if (selectedRow != -1 && selectedColumn != -1) {
+                        ReportTableModel reportsModel = (ReportTableModel) reportsTable.getModel();
+                        currentlySelectedReport = reportsModel.getReportAt(selectedRow);
+                        idTextField_rent.setText(Integer.toString(currentlySelectedReport.getCar().getId()));
+                        idTextField_remove.setText(Integer.toString(currentlySelectedReport.getCar().getId()));
+                    }
+                } catch (Exception e) {
+
                 }
             }
         });
@@ -943,9 +984,14 @@ public class MainForm extends javax.swing.JFrame {
         this.reportsTable.setModel(reportsModel);
     }
 
-    private void updateTable(ArrayList<ReportViewModel> reportList) {
+    private void updateTable(ArrayList<Report> reportList) {
         ReportTableModel reportsModel = new ReportTableModel(reportList);
         this.reportsTable.setModel(reportsModel);
+    }
+
+    private void updateTableRental(ArrayList<Rental> reportList) {
+        RentalTableModel rentalsModel = new RentalTableModel(reportList);
+        this.reportsTable.setModel(rentalsModel);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -956,7 +1002,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel descriptionLabel_rent;
     private javax.swing.JTextField descriptionTextField_add;
     private javax.swing.JTextField descriptionTextField_report;
-    private javax.swing.JButton generateButton;
+    private javax.swing.JButton generateRentalsReportButton;
+    private javax.swing.JButton generateUnitsReportButton;
     private javax.swing.JTextField idTextField_remove;
     private javax.swing.JTextField idTextField_rent;
     private javax.swing.JLabel jLabel1;
@@ -982,6 +1029,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel modelLabel_rent;
     private javax.swing.JTextField modelTextField_add;
     private javax.swing.JTextField modelTextField_report;

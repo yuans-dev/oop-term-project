@@ -9,7 +9,7 @@ package crms.lib;
  *
  * @author Yuan Suarez
  */
-public class ReportViewModel {
+public class Report {
 
     private final Car car;
     private final boolean isAvailable;
@@ -19,7 +19,7 @@ public class ReportViewModel {
      * @param car
      * @param isAvailable
      */
-    public ReportViewModel(Car car, boolean isAvailable) {
+    public Report(Car car, boolean isAvailable) {
         this.car = car;
         this.isAvailable = isAvailable;
     }
@@ -48,7 +48,7 @@ public class ReportViewModel {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ReportViewModel c = (ReportViewModel) o;
+        Report c = (Report) o;
         return getCar().getId() == c.getCar().getId();
     }
 }
