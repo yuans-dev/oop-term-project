@@ -9,52 +9,5 @@
 1673605040###Toyota###Corolla###New###3000.0
 186276003###Toyota###Vios###New###3000.0
 1681433494###Toyota###Innova###New###3000.0
-237061348###SomeBrand###SomeModel###Some Description###3000.0
-1685538367###SomeBrand###SomeModel###Some Description###3000.0
-1030870354###SomeBrand###SomeModel###Some Description###3000.0
-485815673###SomeBrand###SomeModel###Some Description###3000.0
-410424423###SomeBrand###SomeModel###Some Description###3000.0
-1190035432###SomeBrand###SomeModel###Some Description###3000.0
-1963387170###SomeBrand###SomeModel###Some Description###3000.0
-1323468230###SomeBrand###SomeModel###Some Description###3000.0
-1645995473###SomeBrand###SomeModel###Some Description###3000.0
-1463801669###SomeBrand###SomeModel###Some Description###3000.0
-355629945###SomeBrand###SomeModel###Some Description###3000.0
-1327763628###SomeBrand###SomeModel###Some Description###3000.0
-1915503092###SomeBrand###SomeModel###Some Description###3000.0
-1535128843###SomeBrand###SomeModel###Some Description###3000.0
-1567581361###SomeBrand###SomeModel###Some Description###3000.0
-849460928###SomeBrand###SomeModel###Some Description###3000.0
-580024961###SomeBrand###SomeModel###Some Description###3000.0
-2027961269###SomeBrand###SomeModel###Some Description###3000.0
-1586270964###SomeBrand###SomeModel###Some Description###3000.0
-1534030866###SomeBrand###SomeModel###Some Description###3000.0
-511754216###SomeBrand###SomeModel###Some Description###3000.0
-1721931908###SomeBrand###SomeModel###Some Description###3000.0
-1198108795###SomeBrand###SomeModel###Some Description###3000.0
-214126413###SomeBrand###SomeModel###Some Description###3000.0
-396873410###SomeBrand###SomeModel###Some Description###3000.0
-1706234378###SomeBrand###SomeModel###Some Description###3000.0
-1867750575###SomeBrand###SomeModel###Some Description###3000.0
-2046562095###SomeBrand###SomeModel###Some Description###3000.0
-1342443276###SomeBrand###SomeModel###Some Description###3000.0
-769287236###SomeBrand###SomeModel###Some Description###3000.0
-1587487668###SomeBrand###SomeModel###Some Description###3000.0
-1199823423###SomeBrand###SomeModel###Some Description###3000.0
-932172204###SomeBrand###SomeModel###Some Description###3000.0
-1225358173###SomeBrand###SomeModel###Some Description###3000.0
-1848402763###SomeBrand###SomeModel###Some Description###3000.0
-933699219###SomeBrand###SomeModel###Some Description###3000.0
-2121055098###SomeBrand###SomeModel###Some Description###3000.0
-2084435065###SomeBrand###SomeModel###Some Description###3000.0
-1896277646###SomeBrand###SomeModel###Some Description###3000.0
-2128227771###SomeBrand###SomeModel###Some Description###3000.0
-1702297201###SomeBrand###SomeModel###Some Description###3000.0
-1996181658###SomeBrand###SomeModel###Some Description###3000.0
-806353501###SomeBrand###SomeModel###Some Description###3000.0
-521645586###SomeBrand###SomeModel###Some Description###3000.0
-1296064247###SomeBrand###SomeModel###Some Description###3000.0
-1637070917###SomeBrand###SomeModel###Some Description###3000.0
-780237624###SomeBrand###SomeModel###Some Description###3000.0
-205797316###SomeBrand###SomeModel###Some Description###3000.0
-1128032093###SomeBrand###SomeModel###Some Description###3000.0
+1102689212###Audi###R8###New###10000.0
+1664902308###Audi###R8###New###12000.0

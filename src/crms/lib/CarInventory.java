@@ -12,52 +12,59 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 /**
- * CarInventory class is responsible for getting the recorded <code>Car</code> objects in the local database
- * and several operations related to it.
+ * CarInventory class is responsible for getting the recorded <code>Car</code>
+ * objects in the local database and several operations related to it.
+ *
  * @author Yuan Suarez
  */
 public class CarInventory {
+
     private final String filename = "cars.txt";
     private static CarInventory instance;
-    private final ArrayList <Car> cars;
-    
-    
-    private CarInventory(){
+    private final ArrayList<Car> cars;
+
+    private CarInventory() {
         cars = new ArrayList<>();
     }
+
     /**
      * Singleton implementation of CarInventory
+     *
      * @return Instance of <code>CarInventory</code>
      */
-    public static CarInventory getInstance(){
-        if(instance == null){
+    public static CarInventory getInstance() {
+        if (instance == null) {
             instance = new CarInventory();
             instance.fetchFromDisk();
         }
         return instance;
     }
+
     /**
      * Adds <code>Car</code> to <code>cars</code> if ID property is unique
+     *
      * @param car
      * @return True if successful.
      */
-    public boolean tryAddCar(Car car){
-        for(Car c:cars){
-            if(c.getId()==car.getId()){
+    public boolean tryAddCar(Car car) {
+        for (Car c : cars) {
+            if (c.getId() == car.getId()) {
                 return false;
             }
         }
         cars.add(car);
         return true;
     }
+
     /**
      * Removes <code>Car</code> from <code>cars</code> based on its unique ID
+     *
      * @param car
      * @return True if successful.
      */
-    public boolean tryRemoveCar(Car car){
-        for(Car c: cars){
-            if(c.getId()==car.getId()){
+    public boolean tryRemoveCar(Car car) {
+        for (Car c : cars) {
+            if (c.getId() == car.getId()) {
                 cars.remove(c);
                 return true;
             }
@@ -70,21 +77,23 @@ public class CarInventory {
      * @param id
      * @return
      */
-    public Car getCarById(int id){
-        for(Car car:cars){
-            if(car.getId() == id) return car;
+    public Car getCarById(int id) {
+        for (Car car : cars) {
+            if (car.getId() == id) {
+                return car;
+            }
         }
         return null;
     }
-    
+
     /**
      *
      * @return
      */
-    public int generateUniqueId(){
+    public int generateUniqueId() {
         int uniqueId = this.hashCode();
-        for(Car c: cars){
-            while(uniqueId == c.getId()){
+        for (Car c : cars) {
+            while (uniqueId == c.getId()) {
                 uniqueId++;
             }
         }
@@ -96,38 +105,41 @@ public class CarInventory {
      * @param rentalService
      * @return
      */
-    public ArrayList<ReportViewModel> generateReport(RentalService rentalService){
+    public ArrayList<ReportViewModel> generateReport(RentalService rentalService) {
         var reports = new ArrayList<ReportViewModel>();
-        for(Car car: cars){
+        for (Car car : cars) {
             var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));
             reports.add(report);
         }
         return reports;
     }
+
     /**
      * Generates report and filters results based on provided function.
+     *
      * @param rentalService
      * @param predicate
-     * @return 
+     * @return
      */
-    public ArrayList<ReportViewModel> generateReport(RentalService rentalService, Predicate<Car> predicate){
+    public ArrayList<ReportViewModel> generateReport(RentalService rentalService, Predicate<Car> predicate) {
         var reports = new ArrayList<ReportViewModel>();
-        for(Car car: cars){
-            if(predicate.test(car)){
+        for (Car car : cars) {
+            if (predicate.test(car)) {
                 var report = new ReportViewModel(car, rentalService.isCarAvailableNow(car));
                 reports.add(report);
             }
         }
         return reports;
     }
+
     /**
      *
      */
-    public void fetchFromDisk(){
-        try{
+    public void fetchFromDisk() {
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
 
-            while(reader.ready()){
+            while (reader.ready()) {
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
                 cars.add(
@@ -139,7 +151,7 @@ public class CarInventory {
                                 Double.parseDouble(lineComponents[4])//price
                         ));
             }
-        }catch(IOException | NumberFormatException e){
+        } catch (IOException | NumberFormatException e) {
             System.out.println("An exception has occured while reading " + filename);
         }
     }
@@ -147,16 +159,17 @@ public class CarInventory {
     /**
      *
      */
-    public void saveToDisk(){
-        try{
+    public void saveToDisk() {
+
+        try {
             try (FileWriter fileWriter = new FileWriter(filename)) {
                 String toWrite = "";
-                for(Car car : cars){    
+                for (Car car : cars) {
                     toWrite += car.getId() + "###" + car.getBrand() + "###" + car.getModel() + "###" + car.getDescription() + "###" + car.getPrice() + "\n";
                 }
                 fileWriter.write(toWrite);
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("An exception has occured while saving to disk.");
         }
     }

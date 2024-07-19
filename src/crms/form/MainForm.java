@@ -4,26 +4,42 @@
  */
 package crms.form;
 
+import crms.lib.Car;
 import crms.lib.CarInventory;
 import crms.lib.RentalService;
 import crms.lib.ReportViewModel;
+import crms.lib.gui.RentDateVerifier;
 import crms.lib.gui.ReportTableModel;
-import javax.swing.DefaultListModel;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
 
 /**
  *
  * @author u1ben
  */
 public class MainForm extends javax.swing.JFrame {
+
     private CarInventory carInventory;
     private RentalService rentalService;
+    private ReportViewModel currentlySelectedReport;
+
     /**
      * Creates new form MainForm
      */
     public MainForm() {
-        
+
         initComponents();
+        modifyComponents();
         initializeDatabase();
+
+        //save to disk before shutdown
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            carInventory.saveToDisk();
+            rentalService.saveToDisk();
+        }));
     }
 
     /**
@@ -34,6 +50,7 @@ public class MainForm extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         pnlRoot = new javax.swing.JPanel();
         pnlSide = new javax.swing.JPanel();
@@ -49,19 +66,39 @@ public class MainForm extends javax.swing.JFrame {
         space5 = new javax.swing.JPanel();
         btnReg2 = new javax.swing.JButton();
         pnlCar = new javax.swing.JPanel();
-        space7 = new javax.swing.JPanel();
-        lblBrand = new javax.swing.JLabel();
-        txtBrand = new javax.swing.JTextField();
-        lblModel = new javax.swing.JLabel();
-        txtModel = new javax.swing.JTextField();
-        lblDesc = new javax.swing.JLabel();
-        txtDesc = new javax.swing.JTextField();
-        lblPrice = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
-        space6 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        sideTab = new javax.swing.JTabbedPane();
+        carInventoryControls = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        brandTextField_add = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        modelTextField_add = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        descriptionTextField_add = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        priceTextField_add = new javax.swing.JTextField();
+        registerCarButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        idTextField_remove = new javax.swing.JTextField();
+        registerCarButton1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        rentalServiceControls = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        idTextField_rent = new javax.swing.JTextField();
+        rentCarButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        brandLabel_rent = new javax.swing.JLabel();
+        modelLabel_rent = new javax.swing.JLabel();
+        descriptionLabel_rent = new javax.swing.JLabel();
+        priceLabel_rent = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        rentFromDate_rent = new javax.swing.JFormattedTextField();
+        rentUntilDate_rent = new javax.swing.JFormattedTextField();
+        reportControls = new javax.swing.JPanel();
         pnlCenter = new javax.swing.JPanel();
-        spacer8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportsTable = new javax.swing.JTable();
 
@@ -213,140 +250,296 @@ public class MainForm extends javax.swing.JFrame {
         pnlRoot.add(pnlSide, java.awt.BorderLayout.WEST);
 
         pnlCar.setBackground(new java.awt.Color(34, 40, 44));
-        pnlCar.setPreferredSize(new java.awt.Dimension(350, 50));
+        pnlCar.setPreferredSize(new java.awt.Dimension(400, 50));
 
-        space7.setBackground(new java.awt.Color(34, 40, 44));
-        space7.setPreferredSize(new java.awt.Dimension(300, 26));
+        carInventoryControls.setPreferredSize(new java.awt.Dimension(10, 10));
+        carInventoryControls.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout space7Layout = new javax.swing.GroupLayout(space7);
-        space7.setLayout(space7Layout);
-        space7Layout.setHorizontalGroup(
-            space7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        space7Layout.setVerticalGroup(
-            space7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
-        );
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setLabelFor(brandTextField_add);
+        jLabel1.setText("Brand");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        carInventoryControls.add(jLabel1, gridBagConstraints);
 
-        pnlCar.add(space7);
+        brandTextField_add.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        carInventoryControls.add(brandTextField_add, gridBagConstraints);
 
-        lblBrand.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblBrand.setForeground(new java.awt.Color(204, 204, 204));
-        lblBrand.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblBrand.setText("Brand");
-        lblBrand.setPreferredSize(new java.awt.Dimension(250, 40));
-        pnlCar.add(lblBrand);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Model");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        carInventoryControls.add(jLabel2, gridBagConstraints);
 
-        txtBrand.setBackground(new java.awt.Color(44, 52, 58));
-        txtBrand.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtBrand.setForeground(new java.awt.Color(255, 255, 255));
-        txtBrand.setBorder(null);
-        txtBrand.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtBrand.setPreferredSize(new java.awt.Dimension(250, 30));
-        txtBrand.setSelectionColor(new java.awt.Color(204, 204, 204));
-        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+        modelTextField_add.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        carInventoryControls.add(modelTextField_add, gridBagConstraints);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Description");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        carInventoryControls.add(jLabel3, gridBagConstraints);
+
+        descriptionTextField_add.setText("New");
+        descriptionTextField_add.setPreferredSize(new java.awt.Dimension(100, 22));
+        descriptionTextField_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBrandActionPerformed(evt);
+                descriptionTextField_addActionPerformed(evt);
             }
         });
-        pnlCar.add(txtBrand);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        carInventoryControls.add(descriptionTextField_add, gridBagConstraints);
 
-        lblModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblModel.setForeground(new java.awt.Color(204, 204, 204));
-        lblModel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblModel.setText("Model");
-        lblModel.setPreferredSize(new java.awt.Dimension(250, 40));
-        pnlCar.add(lblModel);
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Price");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        carInventoryControls.add(jLabel4, gridBagConstraints);
 
-        txtModel.setBackground(new java.awt.Color(44, 52, 58));
-        txtModel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtModel.setForeground(new java.awt.Color(255, 255, 255));
-        txtModel.setBorder(null);
-        txtModel.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtModel.setPreferredSize(new java.awt.Dimension(250, 30));
-        txtModel.setSelectionColor(new java.awt.Color(204, 204, 204));
-        pnlCar.add(txtModel);
+        priceTextField_add.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        carInventoryControls.add(priceTextField_add, gridBagConstraints);
 
-        lblDesc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblDesc.setForeground(new java.awt.Color(204, 204, 204));
-        lblDesc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblDesc.setText("Description");
-        lblDesc.setPreferredSize(new java.awt.Dimension(250, 40));
-        pnlCar.add(lblDesc);
+        registerCarButton.setText("Remove");
+        registerCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerCarButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        carInventoryControls.add(registerCarButton, gridBagConstraints);
 
-        txtDesc.setBackground(new java.awt.Color(44, 52, 58));
-        txtDesc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtDesc.setForeground(new java.awt.Color(255, 255, 255));
-        txtDesc.setBorder(null);
-        txtDesc.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtDesc.setPreferredSize(new java.awt.Dimension(250, 30));
-        txtDesc.setSelectionColor(new java.awt.Color(204, 204, 204));
-        pnlCar.add(txtDesc);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setLabelFor(brandTextField_add);
+        jLabel5.setText("ID");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        carInventoryControls.add(jLabel5, gridBagConstraints);
 
-        lblPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblPrice.setForeground(new java.awt.Color(204, 204, 204));
-        lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblPrice.setText("Price");
-        lblPrice.setPreferredSize(new java.awt.Dimension(250, 40));
-        pnlCar.add(lblPrice);
+        idTextField_remove.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        carInventoryControls.add(idTextField_remove, gridBagConstraints);
 
-        txtPrice.setBackground(new java.awt.Color(44, 52, 58));
-        txtPrice.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPrice.setForeground(new java.awt.Color(255, 255, 255));
-        txtPrice.setBorder(null);
-        txtPrice.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtPrice.setPreferredSize(new java.awt.Dimension(250, 30));
-        txtPrice.setSelectionColor(new java.awt.Color(204, 204, 204));
-        pnlCar.add(txtPrice);
+        registerCarButton1.setText("Register");
+        registerCarButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerCarButton1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
+        carInventoryControls.add(registerCarButton1, gridBagConstraints);
 
-        space6.setBackground(new java.awt.Color(34, 40, 44));
-        space6.setPreferredSize(new java.awt.Dimension(300, 26));
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator2.setPreferredSize(new java.awt.Dimension(1, 3));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 21);
+        carInventoryControls.add(jSeparator2, gridBagConstraints);
 
-        javax.swing.GroupLayout space6Layout = new javax.swing.GroupLayout(space6);
-        space6.setLayout(space6Layout);
-        space6Layout.setHorizontalGroup(
-            space6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        sideTab.addTab("Inventory", carInventoryControls);
+
+        rentalServiceControls.setLayout(new java.awt.GridBagLayout());
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setLabelFor(brandTextField_add);
+        jLabel6.setText("ID:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel6, gridBagConstraints);
+
+        idTextField_rent.setPreferredSize(new java.awt.Dimension(100, 22));
+        idTextField_rent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTextField_rentActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        rentalServiceControls.add(idTextField_rent, gridBagConstraints);
+
+        rentCarButton.setText("Rent");
+        rentCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rentCarButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
+        rentalServiceControls.add(rentCarButton, gridBagConstraints);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setLabelFor(brandTextField_add);
+        jLabel7.setText("Brand:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel7, gridBagConstraints);
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setLabelFor(brandTextField_add);
+        jLabel8.setText("Model:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel8, gridBagConstraints);
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setLabelFor(brandTextField_add);
+        jLabel9.setText("Description:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel9, gridBagConstraints);
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setLabelFor(brandTextField_add);
+        jLabel10.setText("Price:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel10, gridBagConstraints);
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setLabelFor(brandTextField_add);
+        jLabel11.setText("Rent from:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel11, gridBagConstraints);
+
+        brandLabel_rent.setText("None");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        rentalServiceControls.add(brandLabel_rent, gridBagConstraints);
+
+        modelLabel_rent.setText("None");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        rentalServiceControls.add(modelLabel_rent, gridBagConstraints);
+
+        descriptionLabel_rent.setText("None");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        rentalServiceControls.add(descriptionLabel_rent, gridBagConstraints);
+
+        priceLabel_rent.setText("None");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        rentalServiceControls.add(priceLabel_rent, gridBagConstraints);
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setLabelFor(brandTextField_add);
+        jLabel12.setText("Rent until:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        rentalServiceControls.add(jLabel12, gridBagConstraints);
+
+        rentFromDate_rent.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        rentFromDate_rent.setInputVerifier(new RentDateVerifier());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        rentalServiceControls.add(rentFromDate_rent, gridBagConstraints);
+
+        rentUntilDate_rent.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        rentUntilDate_rent.setInputVerifier(new RentDateVerifier());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(8, 15, 8, 15);
+        rentalServiceControls.add(rentUntilDate_rent, gridBagConstraints);
+
+        sideTab.addTab("Rental", rentalServiceControls);
+
+        javax.swing.GroupLayout reportControlsLayout = new javax.swing.GroupLayout(reportControls);
+        reportControls.setLayout(reportControlsLayout);
+        reportControlsLayout.setHorizontalGroup(
+            reportControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 382, Short.MAX_VALUE)
         );
-        space6Layout.setVerticalGroup(
-            space6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
+        reportControlsLayout.setVerticalGroup(
+            reportControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 221, Short.MAX_VALUE)
         );
 
-        pnlCar.add(space6);
+        sideTab.addTab("Reports", reportControls);
 
-        jButton1.setBackground(new java.awt.Color(44, 52, 58));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Register");
-        jButton1.setPreferredSize(new java.awt.Dimension(100, 34));
-        pnlCar.add(jButton1);
+        pnlCar.add(sideTab);
 
         pnlRoot.add(pnlCar, java.awt.BorderLayout.EAST);
 
         pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
-        pnlCenter.setPreferredSize(new java.awt.Dimension(777, 507));
-        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
-        flowLayout1.setAlignOnBaseline(true);
-        pnlCenter.setLayout(flowLayout1);
+        pnlCenter.setLayout(new java.awt.BorderLayout());
 
-        spacer8.setBackground(new java.awt.Color(34, 40, 44));
-        spacer8.setPreferredSize(new java.awt.Dimension(777, 26));
+        jScrollPane1.setForeground(new java.awt.Color(250, 250, 250));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 600));
 
-        javax.swing.GroupLayout spacer8Layout = new javax.swing.GroupLayout(spacer8);
-        spacer8.setLayout(spacer8Layout);
-        spacer8Layout.setHorizontalGroup(
-            spacer8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
-        );
-        spacer8Layout.setVerticalGroup(
-            spacer8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 26, Short.MAX_VALUE)
-        );
-
-        pnlCenter.add(spacer8);
-
+        reportsTable.setBackground(new java.awt.Color(34, 40, 44));
+        reportsTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        reportsTable.setForeground(new java.awt.Color(250, 250, 250));
         reportsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -358,9 +551,12 @@ public class MainForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        reportsTable.setGridColor(new java.awt.Color(34, 40, 44));
+        reportsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        reportsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportsTable);
 
-        pnlCenter.add(jScrollPane1);
+        pnlCenter.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         pnlRoot.add(pnlCenter, java.awt.BorderLayout.CENTER);
 
@@ -381,9 +577,49 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnReg2ActionPerformed
 
-    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+    private void registerCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButtonActionPerformed
+        //validate input
+        if (idTextField_remove.getText().isBlank()) {
+            return;
+        }
+        try {
+            var car = carInventory.getCarById(Integer.parseInt(idTextField_remove.getText()));
+            carInventory.tryRemoveCar(car);
+            updateTable();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_registerCarButtonActionPerformed
+
+    private void registerCarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButton1ActionPerformed
+        //validate input
+        if (brandTextField_add.getText().isBlank() || modelTextField_add.getText().isBlank() || descriptionTextField_add.getText().isBlank() || priceTextField_add.getText().isBlank()) {
+            return;
+        }
+        try {
+            var car = new Car(brandTextField_add.getText(),
+                    modelTextField_add.getText(),
+                    descriptionTextField_add.getText(),
+                    Double.parseDouble(priceTextField_add.getText())
+            );
+            while (!carInventory.tryAddCar(car)) {
+                car.incrementId();
+            }
+            updateTable();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_registerCarButton1ActionPerformed
+
+    private void descriptionTextField_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextField_addActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBrandActionPerformed
+    }//GEN-LAST:event_descriptionTextField_addActionPerformed
+
+    private void rentCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentCarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rentCarButtonActionPerformed
+
+    private void idTextField_rentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextField_rentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTextField_rentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -392,7 +628,7 @@ public class MainForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -419,43 +655,123 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
     }
-    private void initializeDatabase(){
+
+    private void modifyComponents() {
+        //initialize textfields
+        var formatter = DateTimeFormatter.ofPattern("M/d/yy");
+        rentFromDate_rent.setText(LocalDate.now().format(formatter));
+        rentUntilDate_rent.setText(LocalDate.now().plusDays(1).format(formatter));
+
+        //add listener for id textfield
+        idTextField_rent.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                warn();
+            }
+
+            public void warn() {
+                if (idTextField_rent.getText().isBlank()) {
+                    return;
+                }
+                var value = Integer.parseInt(idTextField_rent.getText().trim());
+                new Thread(() -> {
+                    var car = carInventory.getCarById(value);
+                    brandLabel_rent.setText(car.getBrand());
+                    modelLabel_rent.setText(car.getModel());
+                    descriptionLabel_rent.setText(car.getDescription());
+                    priceLabel_rent.setText(Double.toString(car.getPrice()));
+                }).start();
+
+            }
+        });
+
+        //update rental tab when selecting from table
+        reportsTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            if (!event.getValueIsAdjusting()) {
+                int selectedRow = reportsTable.getSelectedRow();
+                int selectedColumn = reportsTable.getSelectedColumn();
+
+                if (selectedRow != -1 && selectedColumn != -1) {
+                    ReportTableModel reportsModel = (ReportTableModel) reportsTable.getModel();
+                    currentlySelectedReport = reportsModel.getReportAt(selectedRow);
+                    idTextField_rent.setText(Integer.toString(currentlySelectedReport.getCar().getId()));
+                    idTextField_remove.setText(Integer.toString(currentlySelectedReport.getCar().getId()));
+                }
+            }
+        });
+
+    }
+
+    private void initializeDatabase() {
         carInventory = CarInventory.getInstance();
         rentalService = RentalService.getInstance(carInventory);
-        DefaultListModel<String> reports = new DefaultListModel<>();
-        ReportTableModel reportsTable = new ReportTableModel(carInventory.generateReport(rentalService));
-        this.reportsTable.setModel(reportsTable);
+        updateTable();
+    }
+
+    private void updateTable() {
+        ReportTableModel reportsModel = new ReportTableModel(carInventory.generateReport(rentalService));
+        this.reportsTable.setModel(reportsModel);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel brandLabel_rent;
+    private javax.swing.JTextField brandTextField_add;
     private javax.swing.JButton btnReg;
     private javax.swing.JButton btnReg1;
     private javax.swing.JButton btnReg2;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel carInventoryControls;
+    private javax.swing.JLabel descriptionLabel_rent;
+    private javax.swing.JTextField descriptionTextField_add;
+    private javax.swing.JTextField idTextField_remove;
+    private javax.swing.JTextField idTextField_rent;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblBrand;
-    private javax.swing.JLabel lblDesc;
-    private javax.swing.JLabel lblModel;
-    private javax.swing.JLabel lblPrice;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel modelLabel_rent;
+    private javax.swing.JTextField modelTextField_add;
     private javax.swing.JPanel pnlCar;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JPanel pnlSide;
+    private javax.swing.JLabel priceLabel_rent;
+    private javax.swing.JTextField priceTextField_add;
+    private javax.swing.JButton registerCarButton;
+    private javax.swing.JButton registerCarButton1;
+    private javax.swing.JButton rentCarButton;
+    private javax.swing.JFormattedTextField rentFromDate_rent;
+    private javax.swing.JFormattedTextField rentUntilDate_rent;
+    private javax.swing.JPanel rentalServiceControls;
+    private javax.swing.JPanel reportControls;
     private javax.swing.JTable reportsTable;
+    private javax.swing.JTabbedPane sideTab;
     private javax.swing.JPanel space1;
     private javax.swing.JPanel space2;
     private javax.swing.JPanel space3;
     private javax.swing.JPanel space4;
     private javax.swing.JPanel space5;
-    private javax.swing.JPanel space6;
-    private javax.swing.JPanel space7;
-    private javax.swing.JPanel spacer8;
     private javax.swing.JLabel title1;
     private javax.swing.JLabel title2;
-    private javax.swing.JTextField txtBrand;
-    private javax.swing.JTextField txtDesc;
-    private javax.swing.JTextField txtModel;
-    private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
 }

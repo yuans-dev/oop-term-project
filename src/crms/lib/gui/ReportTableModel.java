@@ -6,16 +6,16 @@ package crms.lib.gui;
 
 import crms.lib.ReportViewModel;
 import java.util.ArrayList;
-
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author u1ben
  */
-public class ReportTableModel extends AbstractTableModel{
+public class ReportTableModel extends AbstractTableModel {
+
     private final ArrayList<ReportViewModel> reports;
-    private final String[] columnNames = {"Brand", "Model", "Description","Availability"};
+    private final String[] columnNames = {"ID", "Brand", "Model", "Description", "Availability", "Price (php/day)"};
 
     public ReportTableModel(ArrayList<ReportViewModel> reports) {
         this.reports = reports;
@@ -35,12 +35,25 @@ public class ReportTableModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         ReportViewModel report = reports.get(rowIndex);
         switch (columnIndex) {
-            case 0: return report.getCar().getBrand();
-            case 1: return report.getCar().getModel();
-            case 2: return report.getCar().getDescription();
-            case 3: return report.isAvailable() ? "Available" : "Rented";
-            default: throw new IllegalArgumentException("Invalid column index");
+            case 0:
+                return report.getCar().getId();
+            case 1:
+                return report.getCar().getBrand();
+            case 2:
+                return report.getCar().getModel();
+            case 3:
+                return report.getCar().getDescription();
+            case 4:
+                return report.isAvailable() ? "Available" : "Rented";
+            case 5:
+                return report.getCar().getPrice();
+            default:
+                throw new IllegalArgumentException("Invalid column index");
         }
+    }
+
+    public ReportViewModel getReportAt(int rowIndex) {
+        return reports.get(rowIndex);
     }
 
     @Override
@@ -48,4 +61,3 @@ public class ReportTableModel extends AbstractTableModel{
         return columnNames[column];
     }
 }
-
