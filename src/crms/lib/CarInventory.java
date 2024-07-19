@@ -90,16 +90,6 @@ public class CarInventory {
      *
      * @return
      */
-    public int generateUniqueId() {
-        int uniqueId = this.hashCode();
-        for (Car c : cars) {
-            while (uniqueId == c.getId()) {
-                uniqueId++;
-            }
-        }
-        return uniqueId;
-    }
-
     /**
      *
      * @param rentalService

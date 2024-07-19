@@ -4,12 +4,16 @@
  */
 package crms.lib;
 
+import java.util.Random;
+
 /**
  * Class representing a Car unit
- * @author      Yuan Suarez
- * 
+ *
+ * @author Yuan Suarez
+ *
  */
 public class Car {
+
     /**
      * Description of the car
      */
@@ -19,17 +23,16 @@ public class Car {
     private double price;
     private int id;
 
-    
     /**
-     * 
-     * 
+     *
+     *
      * @param brand brand
      * @param model model
      * @param description description
      * @param price price
      */
-    public Car(String brand, String model, String description, double price){
-        this.id = this.hashCode();
+    public Car(String brand, String model, String description, double price) {
+        this.id = generateRandomId();
         this.description = description;
         this.brand = brand;
         this.model = model;
@@ -44,7 +47,7 @@ public class Car {
      * @param description
      * @param price
      */
-    public Car(int id, String brand, String model, String description, double price){
+    public Car(int id, String brand, String model, String description, double price) {
         this.id = id;
         this.description = description;
         this.brand = brand;
@@ -52,11 +55,17 @@ public class Car {
         this.price = price;
     }
 
+    public int generateRandomId() {
+        Random rand = new Random();
+        int rand_int = rand.nextInt(1000000000);
+        return rand_int;
+    }
+
     /**
      *
      * @param price
      */
-    public void setPrice(double price){
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -64,7 +73,7 @@ public class Car {
      *
      * @return
      */
-    public double getPrice(){
+    public double getPrice() {
         return this.price;
     }
 
@@ -83,13 +92,15 @@ public class Car {
     public String getDescription() {
         return this.description;
     }
+
     /**
-     * 
-     * @param description 
+     *
+     * @param description
      */
-    public void setDescription(String description){
+    public void setDescription(String description) {
         this.description = description;
     }
+
     /**
      *
      * @return
@@ -109,7 +120,7 @@ public class Car {
     /**
      *
      */
-    public void incrementId(){
+    public void incrementId() {
         this.id++;
     }
 }

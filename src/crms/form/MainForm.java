@@ -12,6 +12,8 @@ import crms.lib.gui.RentDateVerifier;
 import crms.lib.gui.ReportTableModel;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -80,28 +82,28 @@ public class MainForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         brandTextField_add = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        modelTextField_add = new javax.swing.JTextField();
+        idTextField_remove = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        descriptionTextField_add = new javax.swing.JTextField();
+        modelTextField_add = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        descriptionTextField_add = new javax.swing.JTextField();
+        removeCarButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         priceTextField_add = new javax.swing.JTextField();
         registerCarButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        idTextField_remove = new javax.swing.JTextField();
-        registerCarButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         reportControls = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        brandTextField_report = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        modelTextField_report = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        descriptionTextField_report = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        priceMinTextField_report = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        priceMaxTextField_report = new javax.swing.JTextField();
+        generateButton = new javax.swing.JButton();
         pnlCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportsTable = new javax.swing.JTable();
@@ -439,11 +441,11 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
         carInventoryControls.add(jLabel2, gridBagConstraints);
 
-        modelTextField_add.setBackground(new java.awt.Color(44, 52, 58));
-        modelTextField_add.setForeground(new java.awt.Color(204, 204, 204));
-        modelTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
-        modelTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        modelTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
+        idTextField_remove.setBackground(new java.awt.Color(44, 52, 58));
+        idTextField_remove.setForeground(new java.awt.Color(204, 204, 204));
+        idTextField_remove.setCaretColor(new java.awt.Color(255, 255, 255));
+        idTextField_remove.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        idTextField_remove.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
@@ -452,7 +454,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipady = 3;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
-        carInventoryControls.add(modelTextField_add, gridBagConstraints);
+        carInventoryControls.add(idTextField_remove, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -467,14 +469,14 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
         carInventoryControls.add(jLabel3, gridBagConstraints);
 
-        descriptionTextField_add.setBackground(new java.awt.Color(44, 52, 58));
-        descriptionTextField_add.setForeground(new java.awt.Color(204, 204, 204));
-        descriptionTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
-        descriptionTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        descriptionTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
-        descriptionTextField_add.addActionListener(new java.awt.event.ActionListener() {
+        modelTextField_add.setBackground(new java.awt.Color(44, 52, 58));
+        modelTextField_add.setForeground(new java.awt.Color(204, 204, 204));
+        modelTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
+        modelTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        modelTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
+        modelTextField_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                descriptionTextField_addActionPerformed(evt);
+                modelTextField_addActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -485,7 +487,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipady = 3;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
-        carInventoryControls.add(descriptionTextField_add, gridBagConstraints);
+        carInventoryControls.add(modelTextField_add, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
@@ -500,11 +502,12 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
         carInventoryControls.add(jLabel4, gridBagConstraints);
 
-        priceTextField_add.setBackground(new java.awt.Color(44, 52, 58));
-        priceTextField_add.setForeground(new java.awt.Color(204, 204, 204));
-        priceTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
-        priceTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        priceTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
+        descriptionTextField_add.setBackground(new java.awt.Color(44, 52, 58));
+        descriptionTextField_add.setForeground(new java.awt.Color(204, 204, 204));
+        descriptionTextField_add.setText("New");
+        descriptionTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
+        descriptionTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        descriptionTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -513,15 +516,15 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipady = 3;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
-        carInventoryControls.add(priceTextField_add, gridBagConstraints);
+        carInventoryControls.add(descriptionTextField_add, gridBagConstraints);
 
-        registerCarButton.setBackground(new java.awt.Color(44, 52, 58));
-        registerCarButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        registerCarButton.setForeground(new java.awt.Color(204, 204, 204));
-        registerCarButton.setText("Remove");
-        registerCarButton.addActionListener(new java.awt.event.ActionListener() {
+        removeCarButton.setBackground(new java.awt.Color(44, 52, 58));
+        removeCarButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        removeCarButton.setForeground(new java.awt.Color(204, 204, 204));
+        removeCarButton.setText("Remove");
+        removeCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerCarButtonActionPerformed(evt);
+                removeCarButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -531,7 +534,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
         gridBagConstraints.insets = new java.awt.Insets(18, 10, 18, 10);
-        carInventoryControls.add(registerCarButton, gridBagConstraints);
+        carInventoryControls.add(removeCarButton, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -547,11 +550,11 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
         carInventoryControls.add(jLabel5, gridBagConstraints);
 
-        idTextField_remove.setBackground(new java.awt.Color(44, 52, 58));
-        idTextField_remove.setForeground(new java.awt.Color(204, 204, 204));
-        idTextField_remove.setCaretColor(new java.awt.Color(255, 255, 255));
-        idTextField_remove.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        idTextField_remove.setPreferredSize(new java.awt.Dimension(200, 22));
+        priceTextField_add.setBackground(new java.awt.Color(44, 52, 58));
+        priceTextField_add.setForeground(new java.awt.Color(204, 204, 204));
+        priceTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
+        priceTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        priceTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -560,15 +563,15 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipady = 3;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
-        carInventoryControls.add(idTextField_remove, gridBagConstraints);
+        carInventoryControls.add(priceTextField_add, gridBagConstraints);
 
-        registerCarButton1.setBackground(new java.awt.Color(44, 52, 58));
-        registerCarButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        registerCarButton1.setForeground(new java.awt.Color(204, 204, 204));
-        registerCarButton1.setText("Register");
-        registerCarButton1.addActionListener(new java.awt.event.ActionListener() {
+        registerCarButton.setBackground(new java.awt.Color(44, 52, 58));
+        registerCarButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        registerCarButton.setForeground(new java.awt.Color(204, 204, 204));
+        registerCarButton.setText("Register");
+        registerCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerCarButton1ActionPerformed(evt);
+                registerCarButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -578,7 +581,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
         gridBagConstraints.insets = new java.awt.Insets(18, 10, 18, 10);
-        carInventoryControls.add(registerCarButton1, gridBagConstraints);
+        carInventoryControls.add(registerCarButton, gridBagConstraints);
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
@@ -607,12 +610,13 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         reportControls.add(jLabel15, gridBagConstraints);
 
-        jTextField1.setBackground(new java.awt.Color(44, 52, 58));
-        jTextField1.setPreferredSize(new java.awt.Dimension(250, 22));
+        brandTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        brandTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        brandTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        reportControls.add(jTextField1, gridBagConstraints);
+        reportControls.add(brandTextField_report, gridBagConstraints);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(204, 204, 204));
@@ -625,13 +629,14 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         reportControls.add(jLabel16, gridBagConstraints);
 
-        jTextField2.setBackground(new java.awt.Color(44, 52, 58));
-        jTextField2.setPreferredSize(new java.awt.Dimension(250, 22));
+        modelTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        modelTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        modelTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        reportControls.add(jTextField2, gridBagConstraints);
+        reportControls.add(modelTextField_report, gridBagConstraints);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(204, 204, 204));
@@ -644,13 +649,14 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         reportControls.add(jLabel17, gridBagConstraints);
 
-        jTextField3.setBackground(new java.awt.Color(44, 52, 58));
-        jTextField3.setPreferredSize(new java.awt.Dimension(250, 22));
+        descriptionTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        descriptionTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        descriptionTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        reportControls.add(jTextField3, gridBagConstraints);
+        reportControls.add(descriptionTextField_report, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
@@ -663,13 +669,14 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         reportControls.add(jLabel18, gridBagConstraints);
 
-        jTextField4.setBackground(new java.awt.Color(44, 52, 58));
-        jTextField4.setPreferredSize(new java.awt.Dimension(250, 22));
+        priceMinTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        priceMinTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        priceMinTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        reportControls.add(jTextField4, gridBagConstraints);
+        reportControls.add(priceMinTextField_report, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 204, 204));
@@ -682,18 +689,24 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         reportControls.add(jLabel19, gridBagConstraints);
 
-        jTextField5.setBackground(new java.awt.Color(44, 52, 58));
-        jTextField5.setPreferredSize(new java.awt.Dimension(250, 22));
+        priceMaxTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        priceMaxTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        priceMaxTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        reportControls.add(jTextField5, gridBagConstraints);
+        reportControls.add(priceMaxTextField_report, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(44, 52, 58));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Generate");
+        generateButton.setBackground(new java.awt.Color(44, 52, 58));
+        generateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        generateButton.setForeground(new java.awt.Color(204, 204, 204));
+        generateButton.setText("Generate");
+        generateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -701,7 +714,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
-        reportControls.add(jButton1, gridBagConstraints);
+        reportControls.add(generateButton, gridBagConstraints);
 
         sideTab.addTab("Reports", reportControls);
 
@@ -712,7 +725,7 @@ public class MainForm extends javax.swing.JFrame {
         pnlCenter.setBackground(new java.awt.Color(34, 40, 44));
         pnlCenter.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setForeground(new java.awt.Color(250, 250, 250));
+        jScrollPane1.setForeground(new java.awt.Color(62, 66, 68));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 600));
 
         reportsTable.setBackground(new java.awt.Color(34, 40, 44));
@@ -769,17 +782,17 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idTextField_rentActionPerformed
 
-    private void registerCarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButton1ActionPerformed
+    private void registerCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButtonActionPerformed
         //validate input
-        if (brandTextField_add.getText().isBlank() || modelTextField_add.getText().isBlank() || descriptionTextField_add.getText().isBlank() || priceTextField_add.getText().isBlank()) {
+        if (brandTextField_add.getText().isBlank() || priceTextField_add.getText().isBlank() || modelTextField_add.getText().isBlank() || descriptionTextField_add.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Missing parameters");
             return;
         }
         try {
             var car = new Car(brandTextField_add.getText(),
-                modelTextField_add.getText(),
-                descriptionTextField_add.getText(),
-                Double.parseDouble(priceTextField_add.getText())
+                    modelTextField_add.getText(),
+                    descriptionTextField_add.getText(),
+                    Double.parseDouble(priceTextField_add.getText())
             );
             while (!carInventory.tryAddCar(car)) {
                 car.incrementId();
@@ -787,9 +800,9 @@ public class MainForm extends javax.swing.JFrame {
             updateTable();
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_registerCarButton1ActionPerformed
+    }//GEN-LAST:event_registerCarButtonActionPerformed
 
-    private void registerCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCarButtonActionPerformed
+    private void removeCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeCarButtonActionPerformed
         //validate input
         if (idTextField_remove.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Missing parameters");
@@ -801,11 +814,32 @@ public class MainForm extends javax.swing.JFrame {
             updateTable();
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_registerCarButtonActionPerformed
+    }//GEN-LAST:event_removeCarButtonActionPerformed
 
-    private void descriptionTextField_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextField_addActionPerformed
+    private void modelTextField_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelTextField_addActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_descriptionTextField_addActionPerformed
+    }//GEN-LAST:event_modelTextField_addActionPerformed
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        var brand = brandTextField_report.getText().toLowerCase();
+        var model = modelTextField_report.getText().toLowerCase();
+        var description = descriptionTextField_report.getText().toLowerCase();
+        var priceMinText = priceMinTextField_report.getText();
+        var priceMaxText = priceMaxTextField_report.getText();
+
+        double priceMin = priceMinText.isBlank() ? Double.NEGATIVE_INFINITY : Double.parseDouble(priceMinText);
+        double priceMax = priceMaxText.isBlank() ? Double.POSITIVE_INFINITY : Double.parseDouble(priceMaxText);
+
+        var filterResult = carInventory.generateReport(rentalService).stream()
+                .filter(report -> (brand.isBlank() || report.getCar().getBrand().toLowerCase().contains(brand)))
+                .filter(report -> (model.isBlank() || report.getCar().getModel().toLowerCase().contains(model)))
+                .filter(report -> (description.isBlank() || report.getCar().getDescription().toLowerCase().contains(description)))
+                .filter(report -> (priceMin <= report.getCar().getPrice()))
+                .filter(report -> (report.getCar().getPrice() <= priceMax))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        updateTable(filterResult);
+    }//GEN-LAST:event_generateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -909,15 +943,22 @@ public class MainForm extends javax.swing.JFrame {
         this.reportsTable.setModel(reportsModel);
     }
 
+    private void updateTable(ArrayList<ReportViewModel> reportList) {
+        ReportTableModel reportsModel = new ReportTableModel(reportList);
+        this.reportsTable.setModel(reportsModel);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel brandLabel_rent;
     private javax.swing.JTextField brandTextField_add;
+    private javax.swing.JTextField brandTextField_report;
     private javax.swing.JPanel carInventoryControls;
     private javax.swing.JLabel descriptionLabel_rent;
     private javax.swing.JTextField descriptionTextField_add;
+    private javax.swing.JTextField descriptionTextField_report;
+    private javax.swing.JButton generateButton;
     private javax.swing.JTextField idTextField_remove;
     private javax.swing.JTextField idTextField_rent;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -941,20 +982,18 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel modelLabel_rent;
     private javax.swing.JTextField modelTextField_add;
+    private javax.swing.JTextField modelTextField_report;
     private javax.swing.JPanel pnlCar;
     private javax.swing.JPanel pnlCenter;
     private javax.swing.JPanel pnlRoot;
     private javax.swing.JLabel priceLabel_rent;
+    private javax.swing.JTextField priceMaxTextField_report;
+    private javax.swing.JTextField priceMinTextField_report;
     private javax.swing.JTextField priceTextField_add;
     private javax.swing.JButton registerCarButton;
-    private javax.swing.JButton registerCarButton1;
+    private javax.swing.JButton removeCarButton;
     private javax.swing.JButton rentCarButton;
     private javax.swing.JFormattedTextField rentFromDate_rent;
     private javax.swing.JFormattedTextField rentUntilDate_rent;
