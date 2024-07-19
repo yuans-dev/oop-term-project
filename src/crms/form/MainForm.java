@@ -89,7 +89,19 @@ public class MainForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         idTextField_remove = new javax.swing.JTextField();
         registerCarButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         reportControls = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         pnlCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportsTable = new javax.swing.JTable();
@@ -100,7 +112,7 @@ public class MainForm extends javax.swing.JFrame {
         pnlRoot.setLayout(new java.awt.BorderLayout());
 
         pnlCar.setBackground(new java.awt.Color(34, 40, 44));
-        pnlCar.setPreferredSize(new java.awt.Dimension(320, 50));
+        pnlCar.setPreferredSize(new java.awt.Dimension(400, 50));
 
         jPanel2.setBackground(new java.awt.Color(34, 40, 44));
         jPanel2.setPreferredSize(new java.awt.Dimension(300, 30));
@@ -153,7 +165,7 @@ public class MainForm extends javax.swing.JFrame {
         sideTab.setBackground(new java.awt.Color(34, 40, 44));
         sideTab.setForeground(new java.awt.Color(204, 204, 204));
         sideTab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        sideTab.setPreferredSize(new java.awt.Dimension(320, 325));
+        sideTab.setPreferredSize(new java.awt.Dimension(400, 325));
 
         rentalServiceControls.setBackground(new java.awt.Color(34, 40, 44));
         rentalServiceControls.setPreferredSize(new java.awt.Dimension(204, 300));
@@ -170,7 +182,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel6, gridBagConstraints);
 
         idTextField_rent.setBackground(new java.awt.Color(44, 52, 58));
@@ -222,7 +234,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel7, gridBagConstraints);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -236,7 +248,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel8, gridBagConstraints);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -250,7 +262,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel9, gridBagConstraints);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -264,7 +276,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel10, gridBagConstraints);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -278,7 +290,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel11, gridBagConstraints);
 
         brandLabel_rent.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -344,7 +356,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         rentalServiceControls.add(jLabel12, gridBagConstraints);
 
         rentFromDate_rent.setBackground(new java.awt.Color(44, 52, 58));
@@ -382,7 +394,7 @@ public class MainForm extends javax.swing.JFrame {
         sideTab.addTab("Rental", rentalServiceControls);
 
         carInventoryControls.setBackground(new java.awt.Color(34, 40, 44));
-        carInventoryControls.setPreferredSize(new java.awt.Dimension(300, 300));
+        carInventoryControls.setPreferredSize(new java.awt.Dimension(400, 300));
         carInventoryControls.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -392,7 +404,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel1.setText("Brand");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -406,12 +418,12 @@ public class MainForm extends javax.swing.JFrame {
         brandTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 1.5;
-        gridBagConstraints.insets = new java.awt.Insets(8, 29, 8, 29);
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
         carInventoryControls.add(brandTextField_add, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -420,7 +432,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel2.setText("Model");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -433,13 +445,13 @@ public class MainForm extends javax.swing.JFrame {
         modelTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         modelTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 1.5;
-        gridBagConstraints.insets = new java.awt.Insets(8, 29, 8, 29);
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
         carInventoryControls.add(modelTextField_add, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -448,7 +460,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel3.setText("Description");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -467,12 +479,12 @@ public class MainForm extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 1.5;
-        gridBagConstraints.insets = new java.awt.Insets(8, 29, 8, 29);
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
         carInventoryControls.add(descriptionTextField_add, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -481,7 +493,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel4.setText("Price");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -495,12 +507,12 @@ public class MainForm extends javax.swing.JFrame {
         priceTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 1.5;
-        gridBagConstraints.insets = new java.awt.Insets(8, 29, 8, 29);
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
         carInventoryControls.add(priceTextField_add, gridBagConstraints);
 
         registerCarButton.setBackground(new java.awt.Color(44, 52, 58));
@@ -513,12 +525,12 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
-        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 18, 10);
         carInventoryControls.add(registerCarButton, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -527,7 +539,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel5.setLabelFor(brandTextField_add);
         jLabel5.setText("ID");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
@@ -542,12 +554,12 @@ public class MainForm extends javax.swing.JFrame {
         idTextField_remove.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 1;
         gridBagConstraints.ipady = 3;
-        gridBagConstraints.weightx = 1.5;
-        gridBagConstraints.insets = new java.awt.Insets(8, 29, 8, 29);
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.insets = new java.awt.Insets(8, 6, 8, 10);
         carInventoryControls.add(idTextField_remove, gridBagConstraints);
 
         registerCarButton1.setBackground(new java.awt.Color(44, 52, 58));
@@ -561,27 +573,135 @@ public class MainForm extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 4;
         gridBagConstraints.ipady = 4;
-        gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 18, 10);
         carInventoryControls.add(registerCarButton1, gridBagConstraints);
+
+        jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setOpaque(true);
+        jSeparator1.setPreferredSize(new java.awt.Dimension(100, 3));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        carInventoryControls.add(jSeparator1, gridBagConstraints);
 
         sideTab.addTab("Inventory", carInventoryControls);
 
         reportControls.setBackground(new java.awt.Color(34, 40, 44));
+        reportControls.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout reportControlsLayout = new javax.swing.GroupLayout(reportControls);
-        reportControls.setLayout(reportControlsLayout);
-        reportControlsLayout.setHorizontalGroup(
-            reportControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
-        );
-        reportControlsLayout.setVerticalGroup(
-            reportControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel15.setText("Brand");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        reportControls.add(jLabel15, gridBagConstraints);
+
+        jTextField1.setBackground(new java.awt.Color(44, 52, 58));
+        jTextField1.setPreferredSize(new java.awt.Dimension(250, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(jTextField1, gridBagConstraints);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel16.setText("Model");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        reportControls.add(jLabel16, gridBagConstraints);
+
+        jTextField2.setBackground(new java.awt.Color(44, 52, 58));
+        jTextField2.setPreferredSize(new java.awt.Dimension(250, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(jTextField2, gridBagConstraints);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel17.setText("Description");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        reportControls.add(jLabel17, gridBagConstraints);
+
+        jTextField3.setBackground(new java.awt.Color(44, 52, 58));
+        jTextField3.setPreferredSize(new java.awt.Dimension(250, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(jTextField3, gridBagConstraints);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel18.setText("Minimum Price");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        reportControls.add(jLabel18, gridBagConstraints);
+
+        jTextField4.setBackground(new java.awt.Color(44, 52, 58));
+        jTextField4.setPreferredSize(new java.awt.Dimension(250, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(jTextField4, gridBagConstraints);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel19.setText("Maximum Price");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        reportControls.add(jLabel19, gridBagConstraints);
+
+        jTextField5.setBackground(new java.awt.Color(44, 52, 58));
+        jTextField5.setPreferredSize(new java.awt.Dimension(250, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(jTextField5, gridBagConstraints);
+
+        jButton1.setBackground(new java.awt.Color(44, 52, 58));
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Generate");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
+        reportControls.add(jButton1, gridBagConstraints);
 
         sideTab.addTab("Reports", reportControls);
 
@@ -797,12 +917,18 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JTextField descriptionTextField_add;
     private javax.swing.JTextField idTextField_remove;
     private javax.swing.JTextField idTextField_rent;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -814,6 +940,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel modelLabel_rent;
     private javax.swing.JTextField modelTextField_add;
     private javax.swing.JPanel pnlCar;
