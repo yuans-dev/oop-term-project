@@ -79,7 +79,8 @@ public class RentalService {
         }
         for (Rental rental : rentals) {
             if (rental.getCar().getId() == car.getId()
-                    && (LocalDate.now().isBefore(rental.getEndDate()) && LocalDate.now().isAfter(rental.getStartDate()))) {
+                    && ((LocalDate.now().isBefore(rental.getEndDate()) || LocalDate.now().isEqual(rental.getEndDate()))
+                    && (LocalDate.now().isAfter(rental.getStartDate()) || LocalDate.now().isEqual(rental.getStartDate())))) {
                 return false;
             }
         }
@@ -96,6 +97,7 @@ public class RentalService {
     public boolean tryRentCar(Car car, LocalDate startDate, LocalDate endDate) {
         if (isCarAvailable(car, startDate, endDate)) {
             Rental rental = new Rental(car, startDate, endDate);
+            System.out.println("Added rental");
             rentals.add(rental);
             return true;
         }
