@@ -21,7 +21,7 @@ public class Car {
     private final String brand;
     private final String model;
     private double price;
-    private int id;
+    private String id;
 
     /**
      *
@@ -47,7 +47,7 @@ public class Car {
      * @param description
      * @param price
      */
-    public Car(int id, String brand, String model, String description, double price) {
+    public Car(String id, String brand, String model, String description, double price) {
         this.id = id;
         this.description = description.trim();
         this.brand = brand.trim();
@@ -55,10 +55,10 @@ public class Car {
         this.price = price;
     }
 
-    public int generateRandomId() {
-        Random rand = new Random();
-        int rand_int = rand.nextInt(1000000000);
-        return rand_int;
+    private String generateRandomId() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(0x10000);
+        return String.format("%04X", randomNumber);
     }
 
     /**
@@ -81,7 +81,7 @@ public class Car {
      *
      * @return
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -115,12 +115,5 @@ public class Car {
      */
     public String getModel() {
         return model;
-    }
-
-    /**
-     *
-     */
-    public void incrementId() {
-        this.id++;
     }
 }

@@ -60,7 +60,7 @@ public class RentalService {
             return false;
         }
         for (Rental rental : rentals) {
-            if (rental.getCar().getId() == car.getId()
+            if ((rental.getCar().getId() == null ? car.getId() == null : rental.getCar().getId().equals(car.getId()))
                     && (startDate.isBefore(rental.getEndDate()) && endDate.isAfter(rental.getStartDate()))) {
                 return false;
             }
@@ -68,10 +68,10 @@ public class RentalService {
         return true;
     }
 
-    public ArrayList<Rental> generateReport() {
-        var newList = new ArrayList<Rental>();//create new arraylist so rentals cannot be modified directly
+    public ArrayList<RentalReport> generateReport() {
+        var newList = new ArrayList<RentalReport>();//create new arraylist so rentals cannot be modified directly
         for (Rental rental : rentals) {
-            newList.add(rental);
+            newList.add(new RentalReport(rental));
         }
         return newList;
     }
@@ -86,7 +86,7 @@ public class RentalService {
             return false;
         }
         for (Rental rental : rentals) {
-            if (rental.getCar().getId() == car.getId()
+            if ((rental.getCar().getId() == null ? car.getId() == null : rental.getCar().getId().equals(car.getId()))
                     && ((LocalDate.now().isBefore(rental.getEndDate()) || LocalDate.now().isEqual(rental.getEndDate()))
                     && (LocalDate.now().isAfter(rental.getStartDate()) || LocalDate.now().isEqual(rental.getStartDate())))) {
                 return false;
@@ -112,6 +112,25 @@ public class RentalService {
         return false;
     }
 
+    public boolean tryRemoveRental(Rental rental) {
+        for (Rental r : rentals) {
+            if (r.getId() == null ? rental.getId() == null : r.getId().equals(rental.getId())) {
+                rentals.remove(r);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Rental getRentalById(String id) {
+        for (Rental r : rentals) {
+            if (r.getId() == null ? id == null : r.getId().equals(id)) {
+                return r;
+            }
+        }
+        return null;
+    }
+
     /**
      * Gets the number of times a Car has been rented by looking at past
      * rentals.
@@ -123,7 +142,7 @@ public class RentalService {
     public int getTimesRented(Car car) {
         var times = 0;
         for (Rental rental : rentals) {
-            if (rental.getCar().getId() == car.getId()) {
+            if (rental.getCar().getId() == null ? car.getId() == null : rental.getCar().getId().equals(car.getId())) {
                 times++;
             }
         }
@@ -143,7 +162,7 @@ public class RentalService {
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
                 try {
-                    var car = carInventory.getCarById(Integer.parseInt(lineComponents[2]));
+                    var car = carInventory.getCarById(lineComponents[2]);
                     if (car == null) {
                         return;
                     }

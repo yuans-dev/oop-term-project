@@ -77,9 +77,9 @@ public class CarInventory {
      * @param id
      * @return
      */
-    public Car getCarById(int id) {
+    public Car getCarById(String id) {
         for (Car car : cars) {
-            if (car.getId() == id) {
+            if (car.getId() == null ? id == null : car.getId().equals(id)) {
                 return car;
             }
         }
@@ -95,10 +95,10 @@ public class CarInventory {
      * @param rentalService
      * @return
      */
-    public ArrayList<Report> generateReport(RentalService rentalService) {
-        var reports = new ArrayList<Report>();
+    public ArrayList<CarReport> generateReport(RentalService rentalService) {
+        var reports = new ArrayList<CarReport>();
         for (Car car : cars) {
-            var report = new Report(car, rentalService.isCarAvailableNow(car));
+            var report = new CarReport(car, rentalService.isCarAvailableNow(car));
             reports.add(report);
         }
         return reports;
@@ -111,11 +111,11 @@ public class CarInventory {
      * @param predicate
      * @return
      */
-    public ArrayList<Report> generateReport(RentalService rentalService, Predicate<Car> predicate) {
-        var reports = new ArrayList<Report>();
+    public ArrayList<CarReport> generateReport(RentalService rentalService, Predicate<Car> predicate) {
+        var reports = new ArrayList<CarReport>();
         for (Car car : cars) {
             if (predicate.test(car)) {
-                var report = new Report(car, rentalService.isCarAvailableNow(car));
+                var report = new CarReport(car, rentalService.isCarAvailableNow(car));
                 reports.add(report);
             }
         }
@@ -134,7 +134,7 @@ public class CarInventory {
                 String[] lineComponents = text.split("###");
                 cars.add(
                         new Car(
-                                Integer.parseInt(lineComponents[0]),//id
+                                lineComponents[0],//id
                                 lineComponents[1],//brand
                                 lineComponents[2],//model
                                 lineComponents[3],//description

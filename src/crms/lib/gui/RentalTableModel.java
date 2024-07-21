@@ -4,8 +4,7 @@
  */
 package crms.lib.gui;
 
-import crms.lib.Rental;
-import java.time.LocalDate;
+import crms.lib.RentalReport;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
@@ -16,16 +15,16 @@ import javax.swing.table.AbstractTableModel;
  */
 public class RentalTableModel extends AbstractTableModel {
 
-    private final ArrayList<Rental> rentals;
-    private final String[] columnNames = {"Unit", "Rent From", "Rent Until", "Status"};
+    private final ArrayList<RentalReport> reports;
+    private final String[] columnNames = {"ID", "Unit", "Rent From", "Rent Until", "Duration", "Status"};
 
-    public RentalTableModel(ArrayList<Rental> rentals) {
-        this.rentals = rentals;
+    public RentalTableModel(ArrayList<RentalReport> reports) {
+        this.reports = reports;
     }
 
     @Override
     public int getRowCount() {
-        return rentals.size();
+        return reports.size();
     }
 
     @Override
@@ -35,23 +34,27 @@ public class RentalTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Rental rental = rentals.get(rowIndex);
+        RentalReport report = reports.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return rental.getCar().getId() + " " + rental.getCar().getBrand() + " " + rental.getCar().getModel();
+                return report.getId();
             case 1:
-                return rental.getStartDate().format(DateTimeFormatter.ofPattern("M/dd/yy"));
+                return report.getRental().getCar().getBrand() + " " + report.getRental().getCar().getModel();
             case 2:
-                return rental.getEndDate().format(DateTimeFormatter.ofPattern("M/dd/yy"));
+                return report.getRental().getStartDate().format(DateTimeFormatter.ofPattern("M/dd/yy"));
             case 3:
-                return LocalDate.now().isBefore(rental.getEndDate()) || LocalDate.now().equals(rental.getEndDate()) ? "Ongoing" : "Ended";
+                return report.getRental().getEndDate().format(DateTimeFormatter.ofPattern("M/dd/yy"));
+            case 4:
+                return report.getDuration();
+            case 5:
+                return report.getStatus();
             default:
                 throw new IllegalArgumentException("Invalid column index");
         }
     }
 
-    public Rental getReportAt(int rowIndex) {
-        return rentals.get(rowIndex);
+    public RentalReport getReportAt(int rowIndex) {
+        return reports.get(rowIndex);
     }
 
     @Override

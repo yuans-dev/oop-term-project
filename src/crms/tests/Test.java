@@ -16,7 +16,7 @@ public class Test {
         var carInventory = CarInventory.getInstance();
         var rentalService = RentalService.getInstance(carInventory);
         System.out.println("\nReport\n------------------------------");
-        for (Report report : carInventory.generateReport(rentalService, (c) -> c.getBrand().toLowerCase().contains("toyota"))) {
+        for (CarReport report : carInventory.generateReport(rentalService, (c) -> c.getBrand().toLowerCase().contains("toyota"))) {
             var availability = report.isAvailable() ? "Available" : "Rented";
             System.out.println(report.getCar().getId() + "       \t" + report.getCar().getBrand() + "       \t"
                     + report.getCar().getModel() + "       \t"

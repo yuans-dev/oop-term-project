@@ -4,12 +4,14 @@
  */
 package crms.lib;
 
+import java.util.Objects;
+
 /**
  * Class representing a report item.
  *
  * @author Yuan Suarez
  */
-public class Report {
+public class CarReport implements IReport {
 
     private final Car car;
     private final boolean isAvailable;
@@ -19,7 +21,7 @@ public class Report {
      * @param car
      * @param isAvailable
      */
-    public Report(Car car, boolean isAvailable) {
+    public CarReport(Car car, boolean isAvailable) {
         this.car = car;
         this.isAvailable = isAvailable;
     }
@@ -41,6 +43,11 @@ public class Report {
     }
 
     @Override
+    public String getId() {
+        return car.getId();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -48,7 +55,14 @@ public class Report {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Report c = (Report) o;
-        return getCar().getId() == c.getCar().getId();
+        CarReport c = (CarReport) o;
+        return (getId() == null ? getId() == null : getId().equals(getId()));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.car);
+        return hash;
     }
 }
