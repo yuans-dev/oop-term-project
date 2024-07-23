@@ -4,7 +4,7 @@
  */
 package crms.form;
 
-import crms.lib.Car;
+import crms.lib.CarFactory;
 import crms.lib.CarInventory;
 import crms.lib.RentalService;
 import crms.lib.CarReport;
@@ -924,7 +924,8 @@ public class MainForm extends javax.swing.JFrame {
             return;
         }
         try {
-            var car = new Car(brandTextField_add.getText(),
+            var carFactory = new CarFactory(carInventory);
+            var car = carFactory.createCar(brandTextField_add.getText(),
                     modelTextField_add.getText(),
                     descriptionTextField_add.getText(),
                     Double.parseDouble(priceTextField_add.getText())

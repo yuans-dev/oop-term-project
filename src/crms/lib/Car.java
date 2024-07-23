@@ -4,8 +4,6 @@
  */
 package crms.lib;
 
-import java.util.Random;
-
 /**
  * Represents a unit of a car in the system.
  * <p>
@@ -25,32 +23,9 @@ public class Car {
     private final String id;
 
     /**
-     * Constructs a {@code Car} object with the specified brand, model,
-     * description, and price.
-     * <p>
-     * The ID is automatically generated for new car objects.
-     * </p>
-     *
-     * @param brand the brand of the car
-     * @param model the model of the car
-     * @param description a description of the car
-     * @param price the price of the car
-     */
-    public Car(String brand, String model, String description, double price) {
-        this.id = generateRandomId();
-        this.description = description;
-        this.brand = brand;
-        this.model = model;
-        this.price = price;
-    }
-
-    /**
      * Constructs a {@code Car} object with the specified ID, brand, model,
      * description, and price.
-     * <p>
-     * This constructor is used when the car ID is known, such as when loading
-     * from an existing database.
-     * </p>
+     *
      *
      * @param id the unique ID of the car
      * @param brand the brand of the car
@@ -64,18 +39,6 @@ public class Car {
         this.brand = brand.trim();
         this.model = model.trim();
         this.price = price;
-    }
-
-    /**
-     * Generates a random 4-digit hexadecimal number as an ID for the
-     * {@code Car} object.
-     *
-     * @return a {@code String} representing a 4-digit hexadecimal number
-     */
-    private String generateRandomId() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(0x10000);
-        return String.format("%04X", randomNumber);
     }
 
     /**

@@ -84,7 +84,7 @@ public class RentalService {
      * @return an {@code ArrayList} of {@code RentalReport} objects.
      */
     public ArrayList<RentalReport> generateReport() {
-        var newList = new ArrayList<RentalReport>(); // create new arraylist so rentals cannot be modified directly
+        var newList = new ArrayList<RentalReport>();
         for (Rental rental : rentals) {
             newList.add(new RentalReport(rental));
         }
