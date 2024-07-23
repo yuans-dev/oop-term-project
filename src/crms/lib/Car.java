@@ -7,29 +7,34 @@ package crms.lib;
 import java.util.Random;
 
 /**
- * Class representing a Car unit
+ * Represents a unit of a car in the system.
+ * <p>
+ * This class contains information about the car, including its brand, model,
+ * description, price, and a unique ID.
+ * </p>
  *
  * @author Yuan Suarez
- *
+ * @version 1.0
  */
 public class Car {
 
-    /**
-     * Description of the car
-     */
     private String description;
     private final String brand;
     private final String model;
     private double price;
-    private String id;
+    private final String id;
 
     /**
+     * Constructs a {@code Car} object with the specified brand, model,
+     * description, and price.
+     * <p>
+     * The ID is automatically generated for new car objects.
+     * </p>
      *
-     *
-     * @param brand brand
-     * @param model model
-     * @param description description
-     * @param price price
+     * @param brand the brand of the car
+     * @param model the model of the car
+     * @param description a description of the car
+     * @param price the price of the car
      */
     public Car(String brand, String model, String description, double price) {
         this.id = generateRandomId();
@@ -40,12 +45,18 @@ public class Car {
     }
 
     /**
+     * Constructs a {@code Car} object with the specified ID, brand, model,
+     * description, and price.
+     * <p>
+     * This constructor is used when the car ID is known, such as when loading
+     * from an existing database.
+     * </p>
      *
-     * @param id
-     * @param brand
-     * @param model
-     * @param description
-     * @param price
+     * @param id the unique ID of the car
+     * @param brand the brand of the car
+     * @param model the model of the car
+     * @param description a description of the car
+     * @param price the price of the car
      */
     public Car(String id, String brand, String model, String description, double price) {
         this.id = id;
@@ -55,6 +66,12 @@ public class Car {
         this.price = price;
     }
 
+    /**
+     * Generates a random 4-digit hexadecimal number as an ID for the
+     * {@code Car} object.
+     *
+     * @return a {@code String} representing a 4-digit hexadecimal number
+     */
     private String generateRandomId() {
         Random random = new Random();
         int randomNumber = random.nextInt(0x10000);
@@ -62,56 +79,63 @@ public class Car {
     }
 
     /**
+     * Sets the price for the {@code Car}.
      *
-     * @param price
+     * @param price the price to set
      */
     public void setPrice(double price) {
         this.price = price;
     }
 
     /**
+     * Gets the price of the {@code Car}.
      *
-     * @return
+     * @return the price of the car
      */
     public double getPrice() {
         return this.price;
     }
 
     /**
+     * Gets the unique ID of the {@code Car}.
      *
-     * @return
+     * @return the ID of the car
      */
     public String getId() {
         return id;
     }
 
     /**
+     * Gets the description of the {@code Car}.
      *
-     * @return
+     * @return the description of the car
      */
     public String getDescription() {
         return this.description;
     }
 
     /**
+     * Sets the description of the {@code Car}.
      *
-     * @param description
+     * @param description the description to set
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
+     * Gets the brand of the {@code Car}.
      *
-     * @return
+     * @return the brand of the car
      */
     public String getBrand() {
         return brand;
     }
 
     /**
+     * Gets the model of the {@code Car}.
      *
-     * @return
+     * @return the model of the car
      */
     public String getModel() {
         return model;

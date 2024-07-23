@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author u1ben
  */
-public class CarTableModel extends AbstractTableModel {
+public class CarTableModel extends AbstractTableModel implements IReportTableModel {
 
     private final ArrayList<CarReport> reports;
     private final String[] columnNames = {"ID", "Brand", "Model", "Description", "Availability", "Price (php/day)"};

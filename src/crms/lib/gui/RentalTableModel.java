@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author u1ben
  */
-public class RentalTableModel extends AbstractTableModel {
+public class RentalTableModel extends AbstractTableModel implements IReportTableModel {
 
     private final ArrayList<RentalReport> reports;
     private final String[] columnNames = {"ID", "Unit", "Rent From", "Rent Until", "Duration", "Status"};
@@ -37,7 +37,7 @@ public class RentalTableModel extends AbstractTableModel {
         RentalReport report = reports.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return report.getId();
+                return report.getRental().getId();
             case 1:
                 return report.getRental().getCar().getBrand() + " " + report.getRental().getCar().getModel();
             case 2:

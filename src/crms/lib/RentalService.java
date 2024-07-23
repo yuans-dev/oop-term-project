@@ -12,9 +12,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * RentalService class is responsible for getting the recorded
- * <code>Rental</code> objects in the local database and several operations
- * related to it.
+ * The {@code RentalService} class is responsible for managing rental operations
+ * including fetching recorded {@code Rental} objects from the local database,
+ * checking car availability, and generating rental reports.
+ *
+ * <p>
+ * This class follows the singleton pattern to ensure that only one instance of
+ * {@code RentalService} is created.</p>
  *
  * @author Yuan Suarez
  */
@@ -24,20 +28,25 @@ public class RentalService {
     private static RentalService instance;
 
     /**
-     *
+     * The list of rentals managed by the service.
      */
     public ArrayList<Rental> rentals;
 
+    /**
+     * Private constructor to prevent instantiation. Initializes the rentals
+     * list.
+     */
     private RentalService() {
         rentals = new ArrayList<>();
     }
 
     /**
-     * Singleton implementation of RentalService
+     * Returns the singleton instance of {@code RentalService}. If the instance
+     * does not exist, it is created and the rentals are fetched from disk.
      *
-     * @param carInventory <code>RentalService</code> is dependent on
-     * <code>CarInventory</code>.
-     * @return Instance of <code>RentalService</code>
+     * @param carInventory the {@code CarInventory} instance required to fetch
+     * associated {@code Car} objects.
+     * @return the singleton instance of {@code RentalService}.
      */
     public static RentalService getInstance(CarInventory carInventory) {
         if (instance == null) {
@@ -48,12 +57,13 @@ public class RentalService {
     }
 
     /**
-     * Checks if car is available for rental during the given date
+     * Checks if the specified car is available for rental during the given
+     * dates.
      *
-     * @param car
-     * @param startDate
-     * @param endDate
-     * @return <code>true</code> if car is available
+     * @param car the car to check.
+     * @param startDate the start date of the rental period.
+     * @param endDate the end date of the rental period.
+     * @return {@code true} if the car is available, {@code false} otherwise.
      */
     public boolean isCarAvailable(Car car, LocalDate startDate, LocalDate endDate) {
         if (car == null) {
@@ -68,8 +78,13 @@ public class RentalService {
         return true;
     }
 
+    /**
+     * Generates a report of all rentals.
+     *
+     * @return an {@code ArrayList} of {@code RentalReport} objects.
+     */
     public ArrayList<RentalReport> generateReport() {
-        var newList = new ArrayList<RentalReport>();//create new arraylist so rentals cannot be modified directly
+        var newList = new ArrayList<RentalReport>(); // create new arraylist so rentals cannot be modified directly
         for (Rental rental : rentals) {
             newList.add(new RentalReport(rental));
         }
@@ -77,9 +92,10 @@ public class RentalService {
     }
 
     /**
+     * Checks if the specified car is currently available for rental.
      *
-     * @param car
-     * @return True if <code>Car car</code> is available.
+     * @param car the car to check.
+     * @return {@code true} if the car is available, {@code false} otherwise.
      */
     public boolean isCarAvailableNow(Car car) {
         if (car == null) {
@@ -96,11 +112,13 @@ public class RentalService {
     }
 
     /**
+     * Attempts to rent a car for the specified period.
      *
-     * @param car
-     * @param startDate
-     * @param endDate
-     * @return True if successful.
+     * @param car the car to rent.
+     * @param startDate the start date of the rental period.
+     * @param endDate the end date of the rental period.
+     * @return {@code true} if the car was successfully rented, {@code false}
+     * otherwise.
      */
     public boolean tryRentCar(Car car, LocalDate startDate, LocalDate endDate) {
         if (isCarAvailable(car, startDate, endDate)) {
@@ -112,6 +130,13 @@ public class RentalService {
         return false;
     }
 
+    /**
+     * Attempts to remove a rental from the list.
+     *
+     * @param rental the rental to remove.
+     * @return {@code true} if the rental was successfully removed,
+     * {@code false} otherwise.
+     */
     public boolean tryRemoveRental(Rental rental) {
         for (Rental r : rentals) {
             if (r.getId() == null ? rental.getId() == null : r.getId().equals(rental.getId())) {
@@ -122,6 +147,13 @@ public class RentalService {
         return false;
     }
 
+    /**
+     * Retrieves a rental by its ID.
+     *
+     * @param id the ID of the rental.
+     * @return the {@code Rental} with the specified ID, or {@code null} if not
+     * found.
+     */
     public Rental getRentalById(String id) {
         for (Rental r : rentals) {
             if (r.getId() == null ? id == null : r.getId().equals(id)) {
@@ -132,15 +164,13 @@ public class RentalService {
     }
 
     /**
-     * Gets the number of times a Car has been rented by looking at past
-     * rentals.
+     * Gets the number of times a car has been rented.
      *
-     * @param car
-     * @return <code>int</code> representing the number of times a Car has been
-     * rented.
+     * @param car the car to check.
+     * @return the number of times the car has been rented.
      */
     public int getTimesRented(Car car) {
-        var times = 0;
+        int times = 0;
         for (Rental rental : rentals) {
             if (rental.getCar().getId() == null ? car.getId() == null : rental.getCar().getId().equals(car.getId())) {
                 times++;
@@ -150,9 +180,11 @@ public class RentalService {
     }
 
     /**
-     * Fetches the recorded <code>Car</code> objects within cars.txt.
+     * Fetches the recorded {@code Rental} objects from the file
+     * {@code rentals.txt}.
      *
-     * @param carInventory
+     * @param carInventory the {@code CarInventory} instance required to fetch
+     * associated {@code Car} objects.
      */
     public void fetchFromDisk(CarInventory carInventory) {
         try {
@@ -162,7 +194,7 @@ public class RentalService {
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
                 try {
-                    var car = carInventory.getCarById(lineComponents[2]);
+                    Car car = carInventory.getCarById(lineComponents[2]);
                     if (car == null) {
                         return;
                     }
@@ -172,26 +204,29 @@ public class RentalService {
                     )
                     );
                 } catch (Exception e) {
-                    System.out.println("No car unit associated to rental: " + lineComponents[2]);
                 }
 
             }
         } catch (IOException | NumberFormatException e) {
-            System.out.println("An exception has occured while reading " + filename);
+            System.out.println("An exception has occurred while reading " + filename);
         }
     }
 
     /**
-     *
+     * Saves the list of {@code Rental} objects to the file {@code rentals.txt}.
      */
     public void saveToDisk() {
         try {
             try (FileWriter fileWriter = new FileWriter(filename)) {
-                String toWrite = "";
+                StringBuilder toWrite = new StringBuilder();
                 for (Rental rental : rentals) {
-                    toWrite += rental.getStartDate().toString() + "###" + rental.getEndDate().toString() + "###" + rental.getCar().getId() + "\n";
+                    toWrite.append(rental.getStartDate().toString())
+                            .append("###")
+                            .append(rental.getEndDate().toString())
+                            .append("###")
+                            .append(rental.getId()).append("\n");
                 }
-                fileWriter.write(toWrite);
+                fileWriter.write(toWrite.toString());
             }
         } catch (IOException e) {
             System.out.println("An exception has occured while saving to disk.");

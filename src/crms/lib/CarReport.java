@@ -7,19 +7,26 @@ package crms.lib;
 import java.util.Objects;
 
 /**
- * Class representing a report item.
+ * Represents a report item for a {@code Car}.
+ * <p>
+ * This class contains information about a car and its availability status.
+ * </p>
  *
  * @author Yuan Suarez
+ *
  */
-public class CarReport implements IReport {
+public class CarReport {
 
     private final Car car;
     private final boolean isAvailable;
 
     /**
+     * Constructs a {@code CarReport} object with the specified car and
+     * availability status.
      *
-     * @param car
-     * @param isAvailable
+     * @param car the {@code Car} associated with the report
+     * @param isAvailable {@code true} if the car is available, {@code false}
+     * otherwise
      */
     public CarReport(Car car, boolean isAvailable) {
         this.car = car;
@@ -27,26 +34,34 @@ public class CarReport implements IReport {
     }
 
     /**
+     * Gets the {@code Car} object associated with this report.
      *
-     * @return
+     * @return the {@code Car} associated with the report
      */
     public Car getCar() {
         return this.car;
     }
 
     /**
+     * Gets the availability status of the car.
      *
-     * @return
+     * @return {@code true} if the car is available, {@code false} otherwise
      */
     public boolean isAvailable() {
         return this.isAvailable;
     }
 
-    @Override
-    public String getId() {
-        return car.getId();
-    }
-
+    /**
+     * Compares this {@code CarReport} to the specified object for equality.
+     * <p>
+     * Two {@code CarReport} objects are considered equal if they have the same
+     * {@code Car} ID.
+     * </p>
+     *
+     * @param o the object to compare with
+     * @return {@code true} if this {@code CarReport} is equal to the specified
+     * object, {@code false} otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -55,14 +70,20 @@ public class CarReport implements IReport {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CarReport c = (CarReport) o;
-        return (getId() == null ? getId() == null : getId().equals(getId()));
+        CarReport other = (CarReport) o;
+        return Objects.equals(car.getId(), other.car.getId());
     }
 
+    /**
+     * Returns a hash code value for this {@code CarReport}.
+     * <p>
+     * The hash code is based on the {@code Car} object.
+     * </p>
+     *
+     * @return the hash code value for this {@code CarReport}
+     */
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.car);
-        return hash;
+        return Objects.hash(car.getId());
     }
 }

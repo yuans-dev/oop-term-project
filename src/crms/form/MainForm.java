@@ -8,12 +8,12 @@ import crms.lib.Car;
 import crms.lib.CarInventory;
 import crms.lib.RentalService;
 import crms.lib.CarReport;
-import crms.lib.IReport;
 import crms.lib.RentalReport;
 import crms.lib.RentalReport.RentalStatus;
 import crms.lib.gui.RentDateVerifier;
 import crms.lib.gui.RentalTableModel;
 import crms.lib.gui.CarTableModel;
+import crms.lib.gui.IReportTableModel;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,7 +31,6 @@ public class MainForm extends javax.swing.JFrame {
 
     private CarInventory carInventory;
     private RentalService rentalService;
-    private IReport currentlySelectedReport;
 
     /**
      * Creates new form MainForm
@@ -109,7 +108,6 @@ public class MainForm extends javax.swing.JFrame {
         descriptionTextField_report = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         priceMinTextField_report = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
         priceMaxTextField_report = new javax.swing.JTextField();
         generateUnitsReportButton = new javax.swing.JButton();
         generateRentalsReportButton = new javax.swing.JButton();
@@ -118,6 +116,7 @@ public class MainForm extends javax.swing.JFrame {
         rentActiveCheckBox_report = new javax.swing.JCheckBox();
         jLabel22 = new javax.swing.JLabel();
         rentInactiveCheckBox_report = new javax.swing.JCheckBox();
+        jLabel23 = new javax.swing.JLabel();
         pnlCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportsTable = new javax.swing.JTable();
@@ -682,6 +681,9 @@ public class MainForm extends javax.swing.JFrame {
         brandTextField_report.setForeground(new java.awt.Color(204, 204, 204));
         brandTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
@@ -702,8 +704,10 @@ public class MainForm extends javax.swing.JFrame {
         modelTextField_report.setForeground(new java.awt.Color(204, 204, 204));
         modelTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         reportControls.add(modelTextField_report, gridBagConstraints);
@@ -723,7 +727,9 @@ public class MainForm extends javax.swing.JFrame {
         descriptionTextField_report.setForeground(new java.awt.Color(204, 204, 204));
         descriptionTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
@@ -731,7 +737,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel18.setText("Minimum Price");
+        jLabel18.setText("Price Range");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 3;
@@ -745,27 +751,17 @@ public class MainForm extends javax.swing.JFrame {
         priceMinTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         reportControls.add(priceMinTextField_report, gridBagConstraints);
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel19.setText("Maximum Price");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.ipadx = 3;
-        gridBagConstraints.ipady = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
-        reportControls.add(jLabel19, gridBagConstraints);
 
         priceMaxTextField_report.setBackground(new java.awt.Color(44, 52, 58));
         priceMaxTextField_report.setForeground(new java.awt.Color(204, 204, 204));
         priceMaxTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
@@ -783,7 +779,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
@@ -802,7 +798,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
@@ -812,8 +808,7 @@ public class MainForm extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         reportControls.add(jSeparator2, gridBagConstraints);
 
@@ -822,7 +817,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel21.setText("Inactive only");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -830,7 +825,7 @@ public class MainForm extends javax.swing.JFrame {
         reportControls.add(jLabel21, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 8;
         reportControls.add(rentActiveCheckBox_report, gridBagConstraints);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -838,7 +833,7 @@ public class MainForm extends javax.swing.JFrame {
         jLabel22.setText("Active only");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -846,8 +841,19 @@ public class MainForm extends javax.swing.JFrame {
         reportControls.add(jLabel22, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 9;
         reportControls.add(rentInactiveCheckBox_report, gridBagConstraints);
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel23.setText("-");
+        jLabel23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        reportControls.add(jLabel23, gridBagConstraints);
 
         sideTab.addTab("Reports", reportControls);
 
@@ -957,7 +963,8 @@ public class MainForm extends javax.swing.JFrame {
         double priceMin = priceMinText.isBlank() ? Double.NEGATIVE_INFINITY : Double.parseDouble(priceMinText);
         double priceMax = priceMaxText.isBlank() ? Double.POSITIVE_INFINITY : Double.parseDouble(priceMaxText);
 
-        var filterResult = carInventory.generateReport(rentalService).stream()
+        var filterResult = carInventory.generateReport(rentalService)
+                .stream()
                 .filter(report -> (brand.isBlank() || report.getCar().getBrand().toLowerCase().contains(brand)))
                 .filter(report -> (model.isBlank() || report.getCar().getModel().toLowerCase().contains(model)))
                 .filter(report -> (description.isBlank() || report.getCar().getDescription().toLowerCase().contains(description)))
@@ -1073,18 +1080,19 @@ public class MainForm extends javax.swing.JFrame {
                 int selectedRow = reportsTable.getSelectedRow();
                 int selectedColumn = reportsTable.getSelectedColumn();
 
-                if (reportsTable.getModel() instanceof CarTableModel) {
-                    if (selectedRow != -1 && selectedColumn != -1) {
-                        CarTableModel reportsModel = (CarTableModel) reportsTable.getModel();
-                        currentlySelectedReport = reportsModel.getReportAt(selectedRow);
-                        idTextField_rent.setText(currentlySelectedReport.getId());
-                        idTextField_remove.setText(currentlySelectedReport.getId());
-                    }
-                } else if (reportsTable.getModel() instanceof RentalTableModel) {
-                    if (selectedRow != -1 && selectedColumn != -1) {
-                        RentalTableModel reportsModel = (RentalTableModel) reportsTable.getModel();
-                        currentlySelectedReport = reportsModel.getReportAt(selectedRow);
-                        rentalIdTextField_rent.setText(currentlySelectedReport.getId());
+                if (selectedRow != -1 && selectedColumn != -1) {
+                    if (reportsTable.getModel() instanceof IReportTableModel reportTableModel) {
+                        Object report = reportTableModel.getReportAt(selectedRow);
+
+                        if (report instanceof CarReport carReport) {
+                            idTextField_rent.setText(carReport.getCar().getId());
+                            idTextField_remove.setText(carReport.getCar().getId());
+                            rentalIdTextField_rent.setText("");
+                        } else if (report instanceof RentalReport rentalReport) {
+                            rentalIdTextField_rent.setText(rentalReport.getRental().getId());
+                            idTextField_rent.setText("");
+                            idTextField_remove.setText("");
+                        }
                     }
                 }
             }
@@ -1131,11 +1139,11 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
