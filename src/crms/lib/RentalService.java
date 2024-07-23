@@ -224,7 +224,7 @@ public class RentalService {
                             .append("###")
                             .append(rental.getEndDate().toString())
                             .append("###")
-                            .append(rental.getId()).append("\n");
+                            .append(rental.getCar().getId()).append("\n");
                 }
                 fileWriter.write(toWrite.toString());
             }
