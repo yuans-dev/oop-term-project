@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * The {@code RentalService} class is responsible for managing rental operations
@@ -29,15 +30,15 @@ public class RentalDatabase extends Database<Rental> {
     /**
      * Private constructor to prevent instantiation. Initializes the rentals
      * list.
-     *
-     * private RentalDatabase() { dataList = new ArrayList<>(); }
-     *
-     * /**
+     */
+    private RentalDatabase() {
+        dataList = new ArrayList<>();
+    }
+
+    /**
      * Returns the singleton instance of {@code RentalService}. If the instance
      * does not exist, it is created and the rentals are fetched from disk.
      *
-     * @param carManager the {@code CarInventory} instance required to fetch
-     * associated {@code Car} objects.
      * @return the singleton instance of {@code RentalService}.
      */
     public static RentalDatabase getInstance() {

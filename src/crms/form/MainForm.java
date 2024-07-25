@@ -1105,7 +1105,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void initializeProgram() {
-        carManager = new CarManager(CarDatabase.getInstance());
+        carManager = new CarManager(CarDatabase.getInstance(), RentalDatabase.getInstance());
         rentalManager = new RentalManager(RentalDatabase.getInstance());
         updateCarTable(carManager.generateReport());
     }

@@ -102,22 +102,6 @@ public class RentalManager implements IReportGenerator<RentalReport> {
     }
 
     /**
-     * Gets the number of times a car has been rented.
-     *
-     * @param car the car to check.
-     * @return the number of times the car has been rented.
-     */
-    public int getTimesRented(Car car) {
-        int times = 0;
-        for (Rental rental : database.dataList) {
-            if (rental.getCar().getId() == null ? car.getId() == null : rental.getCar().getId().equals(car.getId())) {
-                times++;
-            }
-        }
-        return times;
-    }
-
-    /**
      * Generates a report of all rentals.
      *
      * @return an {@code ArrayList} of {@code RentalReport} objects.

@@ -16,8 +16,9 @@ public class CarManager implements IReportGenerator<CarReport> {
     private Database<Car> carDatabase;
     private Database<Rental> rentalDatabase;
 
-    public CarManager(Database<Car> database) {
-        this.carDatabase = database;
+    public CarManager(Database<Car> carDatabase, Database<Rental> rentalDatabase) {
+        this.carDatabase = carDatabase;
+        this.rentalDatabase = rentalDatabase;
     }
 
     public Database<Car> getDatabase() {
