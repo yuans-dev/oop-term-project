@@ -18,7 +18,7 @@ import java.util.Objects;
 public class CarReport {
 
     private final Car car;
-    private final boolean isAvailable;
+    private boolean isAvailable;
 
     /**
      * Constructs a {@code CarReport} object with the specified car and

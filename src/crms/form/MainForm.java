@@ -4,16 +4,19 @@
  */
 package crms.form;
 
+import crms.lib.CarDatabase;
 import crms.lib.CarFactory;
-import crms.lib.CarInventory;
-import crms.lib.RentalService;
+import crms.lib.CarManager;
 import crms.lib.CarReport;
+import crms.lib.Rental;
+import crms.lib.RentalDatabase;
+import crms.lib.RentalManager;
 import crms.lib.RentalReport;
 import crms.lib.RentalReport.RentalStatus;
-import crms.lib.gui.RentDateVerifier;
-import crms.lib.gui.RentalTableModel;
 import crms.lib.gui.CarTableModel;
 import crms.lib.gui.IReportTableModel;
+import crms.lib.gui.RentDateVerifier;
+import crms.lib.gui.RentalTableModel;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -29,8 +32,8 @@ import javax.swing.event.ListSelectionEvent;
  */
 public class MainForm extends javax.swing.JFrame {
 
-    private CarInventory carInventory;
-    private RentalService rentalService;
+    private CarManager carManager;
+    private RentalManager rentalManager;
 
     /**
      * Creates new form MainForm
@@ -39,12 +42,12 @@ public class MainForm extends javax.swing.JFrame {
 
         initComponents();
         modifyComponents();
-        initializeDatabase();
+        initializeProgram();
 
         //save to disk before shutdown
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            carInventory.saveToDisk();
-            rentalService.saveToDisk();
+            rentalManager.getDatabase().saveToDisk();
+            carManager.getDatabase().saveToDisk();
         }));
     }
 
@@ -908,11 +911,11 @@ public class MainForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Minimum rental period is 1 day");
             return;
         }
-        var success = rentalService.tryRentCar(carInventory.getCarById(idTextField_rent.getText().trim()), startDate, endDate);
+        var success = rentalManager.tryRentCar(carManager.getDatabase().getItemById(idTextField_rent.getText().trim()), startDate, endDate);
         if (!success) {
             JOptionPane.showMessageDialog(this, "Unit is not available");
         } else {
-            updateCarTable(carInventory.generateReport(rentalService));
+            updateCarTable(carManager.generateReport());
         }
 
     }//GEN-LAST:event_rentCarButtonActionPerformed
@@ -924,14 +927,14 @@ public class MainForm extends javax.swing.JFrame {
             return;
         }
         try {
-            var carFactory = new CarFactory(carInventory);
+            var carFactory = new CarFactory(carManager.getDatabase());
             var car = carFactory.createCar(brandTextField_add.getText(),
                     modelTextField_add.getText(),
                     descriptionTextField_add.getText(),
                     Double.parseDouble(priceTextField_add.getText())
             );
-            carInventory.tryAddCar(car);
-            updateCarTable(carInventory.generateReport(rentalService));
+            carManager.tryAddCar(car);
+            updateCarTable(carManager.generateReport());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_registerCarButtonActionPerformed
@@ -943,9 +946,9 @@ public class MainForm extends javax.swing.JFrame {
             return;
         }
         try {
-            var car = carInventory.getCarById(idTextField_remove.getText());
-            carInventory.tryRemoveCar(car);
-            updateCarTable(carInventory.generateReport(rentalService));
+            var car = carManager.getDatabase().getItemById(idTextField_remove.getText());
+            carManager.tryRemoveCar(car);
+            updateCarTable(carManager.generateReport());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_removeCarButtonActionPerformed
@@ -964,7 +967,7 @@ public class MainForm extends javax.swing.JFrame {
         double priceMin = priceMinText.isBlank() ? Double.NEGATIVE_INFINITY : Double.parseDouble(priceMinText);
         double priceMax = priceMaxText.isBlank() ? Double.POSITIVE_INFINITY : Double.parseDouble(priceMaxText);
 
-        var filterResult = carInventory.generateReport(rentalService)
+        var filterResult = carManager.generateReport()
                 .stream()
                 .filter(report -> (brand.isBlank() || report.getCar().getBrand().toLowerCase().contains(brand)))
                 .filter(report -> (model.isBlank() || report.getCar().getModel().toLowerCase().contains(model)))
@@ -979,7 +982,7 @@ public class MainForm extends javax.swing.JFrame {
     private void generateRentalsReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateRentalsReportButtonActionPerformed
         var active = rentActiveCheckBox_report.isSelected();
         var inactive = rentInactiveCheckBox_report.isSelected();
-        var filterResult = rentalService.generateReport().stream()
+        var filterResult = rentalManager.generateReport().stream()
                 .filter(report -> (active ? report.getStatus() == RentalStatus.Active : true))
                 .filter(report -> (inactive ? report.getStatus() == RentalStatus.Inactive : true))
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -994,9 +997,9 @@ public class MainForm extends javax.swing.JFrame {
         }
 
         try {
-            var rental = rentalService.getRentalById(rentalIdTextField_rent.getText());
-            rentalService.tryRemoveRental(rental);
-            updateRentalTable(rentalService.generateReport());
+            Rental rental = rentalManager.getDatabase().getItemById(rentalIdTextField_rent.getText());
+            rentalManager.tryRemoveRental(rental);
+            updateRentalTable(rentalManager.generateReport());
         } catch (Exception e) {
         }
     }//GEN-LAST:event_cancelRentButtonActionPerformed
@@ -1065,7 +1068,7 @@ public class MainForm extends javax.swing.JFrame {
                 }
                 var value = idTextField_rent.getText().trim();
                 new Thread(() -> {
-                    var car = carInventory.getCarById(value);
+                    var car = CarDatabase.getInstance().getItemById(value);
                     brandLabel_rent.setText(car.getBrand());
                     modelLabel_rent.setText(car.getModel());
                     descriptionLabel_rent.setText(car.getDescription());
@@ -1101,10 +1104,10 @@ public class MainForm extends javax.swing.JFrame {
 
     }
 
-    private void initializeDatabase() {
-        carInventory = CarInventory.getInstance();
-        rentalService = RentalService.getInstance(carInventory);
-        updateCarTable(carInventory.generateReport(rentalService));
+    private void initializeProgram() {
+        carManager = new CarManager(CarDatabase.getInstance());
+        rentalManager = new RentalManager(RentalDatabase.getInstance(CarDatabase.getInstance()));
+        updateCarTable(carManager.generateReport());
     }
 
     private void updateCarTable(ArrayList<CarReport> reportList) {

@@ -7,3 +7,4 @@ D07A###Honda###Civic###New###4000.0
 8761###Toyota###Vios###New###4000.0
 7555###Toyota###Vios###New###10000.0
 CF79###Toyota###Prius###Blue###3400.0
+4C32###Toyota###Fortuner###New###3700.0

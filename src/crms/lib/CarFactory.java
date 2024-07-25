@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public class CarFactory {
 
-    private final CarInventory carInventory;
+    private final Database<Car> carDatabase;
 
     /**
      * Constructs a {@code CarFactory} object.
@@ -24,8 +24,8 @@ public class CarFactory {
      * @param carInventory The {@code CarInventory} instance required for some
      * methods.
      */
-    public CarFactory(CarInventory carInventory) {
-        this.carInventory = carInventory;
+    public CarFactory(Database<Car> carDatabase) {
+        this.carDatabase = carDatabase;
     }
 
     /**
@@ -43,7 +43,7 @@ public class CarFactory {
         String id;
         do {
             id = generateRandomId();
-        } while (carInventory.getCarById(id) != null);//Regenerate if it returns a car object
+        } while (carDatabase.getItemById(id) != null);//Regenerate if it returns a car object
         return new Car(id, brand, model, description, price);
     }
 

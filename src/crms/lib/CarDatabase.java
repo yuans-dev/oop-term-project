@@ -26,18 +26,17 @@ import java.util.ArrayList;
  * @author Yuan Suarez
  * @version 1.0
  */
-public class CarInventory {
+public class CarDatabase extends Database<Car> {
 
     private final String filename = "cars.txt";
-    private static CarInventory instance;
-    private final ArrayList<Car> cars;
+    private static CarDatabase instance;
 
     /**
      * Private constructor to prevent instantiation. Initializes the
      * <code>cars</code> list.
      */
-    private CarInventory() {
-        cars = new ArrayList<>();
+    private CarDatabase() {
+        dataList = new ArrayList<>();
     }
 
     /**
@@ -46,44 +45,12 @@ public class CarInventory {
      *
      * @return the singleton instance of {@code CarInventory}.
      */
-    public static CarInventory getInstance() {
+    public static CarDatabase getInstance() {
         if (instance == null) {
-            instance = new CarInventory();
+            instance = new CarDatabase();
             instance.fetchFromDisk();
         }
         return instance;
-    }
-
-    /**
-     * Adds a {@code Car} to the inventory if its ID is unique.
-     *
-     * @param car The {@code Car} object to be added.
-     * @return True if the car was added successfully, false otherwise.
-     */
-    public boolean tryAddCar(Car car) {
-        for (Car c : cars) {
-            if (c.getId() == null ? car.getId() == null : c.getId().equals(car.getId())) {
-                return false;
-            }
-        }
-        cars.add(car);
-        return true;
-    }
-
-    /**
-     * Removes a {@code Car} from the inventory based on its unique ID.
-     *
-     * @param car The {@code Car} object to be removed
-     * @return true if the car was removed successfully, false otherwise.
-     */
-    public boolean tryRemoveCar(Car car) {
-        for (Car c : cars) {
-            if (c.getId() == null ? car.getId() == null : c.getId().equals(car.getId())) {
-                cars.remove(c);
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -93,30 +60,13 @@ public class CarInventory {
      * @return the {@code Car} object with the specified ID, or null if not
      * found
      */
-    public Car getCarById(String id) {
-        for (Car car : cars) {
+    public Car getItemById(String id) {
+        for (Car car : dataList) {
             if (car.getId() == null ? id == null : car.getId().equals(id)) {
                 return car;
             }
         }
         return null;
-    }
-
-    /**
-     * Generates a report that shows the properties and availability of each
-     * {@code Car} object.
-     *
-     * @param rentalService The {@code RentalService} instance required to check
-     * the availability of each {@code Car} object.
-     * @return an {@code ArrayList} of {@code CarReport} objects.
-     */
-    public ArrayList<CarReport> generateReport(RentalService rentalService) {
-        var reports = new ArrayList<CarReport>();
-        for (Car car : cars) {
-            var report = new CarReport(car, rentalService.isCarAvailableNow(car));
-            reports.add(report);
-        }
-        return reports;
     }
 
     /**
@@ -128,7 +78,7 @@ public class CarInventory {
             while (reader.ready()) {
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
-                cars.add(
+                dataList.add(
                         new Car(
                                 lineComponents[0],//id
                                 lineComponents[1],//brand
@@ -148,7 +98,7 @@ public class CarInventory {
     public void saveToDisk() {
         try (FileWriter fileWriter = new FileWriter(filename)) {
             StringBuilder toWrite = new StringBuilder();
-            for (Car car : cars) {
+            for (Car car : dataList) {
                 toWrite.append(car.getId()).append("###")
                         .append(car.getBrand()).append("###")
                         .append(car.getModel()).append("###")
