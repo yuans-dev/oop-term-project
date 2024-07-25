@@ -574,7 +574,6 @@ public class MainForm extends javax.swing.JFrame {
 
         descriptionTextField_add.setBackground(new java.awt.Color(44, 52, 58));
         descriptionTextField_add.setForeground(new java.awt.Color(204, 204, 204));
-        descriptionTextField_add.setText("New");
         descriptionTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
         descriptionTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         descriptionTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
