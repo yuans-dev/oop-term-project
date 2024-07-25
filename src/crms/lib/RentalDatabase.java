@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * The {@code RentalService} class is responsible for managing rental operations
@@ -26,17 +25,14 @@ public class RentalDatabase extends Database<Rental> {
 
     private final String filename = "rentals.txt";
     private static RentalDatabase instance;
-    private CarDatabase carDatabase;
 
     /**
      * Private constructor to prevent instantiation. Initializes the rentals
      * list.
-     */
-    private RentalDatabase() {
-        dataList = new ArrayList<>();
-    }
-
-    /**
+     *
+     * private RentalDatabase() { dataList = new ArrayList<>(); }
+     *
+     * /**
      * Returns the singleton instance of {@code RentalService}. If the instance
      * does not exist, it is created and the rentals are fetched from disk.
      *
@@ -44,10 +40,9 @@ public class RentalDatabase extends Database<Rental> {
      * associated {@code Car} objects.
      * @return the singleton instance of {@code RentalService}.
      */
-    public static RentalDatabase getInstance(CarDatabase carDatabase) {
+    public static RentalDatabase getInstance() {
         if (instance == null) {
             instance = new RentalDatabase();
-            instance.carDatabase = carDatabase;
             instance.fetchFromDisk();
         }
         return instance;
@@ -81,6 +76,7 @@ public class RentalDatabase extends Database<Rental> {
             while (reader.ready()) {
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
+                var carDatabase = CarDatabase.getInstance();
                 try {
                     Car car = carDatabase.getItemById(lineComponents[2]);
                     if (car == null) {
