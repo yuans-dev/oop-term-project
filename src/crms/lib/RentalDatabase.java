@@ -12,13 +12,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * The {@code RentalService} class is responsible for managing rental operations
- * including fetching recorded {@code Rental} objects from the local database,
- * checking car availability, and generating rental reports.
+ * The {@code RentalDatabase} class is responsible for managing rental
+ * operations including fetching recorded {@code Rental} objects from the local
+ * database, checking car availability, and generating rental reports.
  *
  * <p>
  * This class follows the singleton pattern to ensure that only one instance of
- * {@code RentalService} is created.</p>
+ * {@code RentalDatabase} is created.</p>
  *
  * @author Yuan Suarez
  */
@@ -36,10 +36,10 @@ public class RentalDatabase extends Database<Rental> {
     }
 
     /**
-     * Returns the singleton instance of {@code RentalService}. If the instance
+     * Returns the singleton instance of {@code RentalDatabase}. If the instance
      * does not exist, it is created and the rentals are fetched from disk.
      *
-     * @return the singleton instance of {@code RentalService}.
+     * @return the singleton instance of {@code RentalDatabase}.
      */
     public static RentalDatabase getInstance() {
         if (instance == null) {

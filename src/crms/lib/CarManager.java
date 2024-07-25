@@ -8,19 +8,36 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
+ * Manages car inventory and rentals.
+ * <p>
+ * This class provides functionalities to add and remove cars from inventory,
+ * check car availability, and generate reports about the cars.
+ * </p>
  *
- * @author u1ben
+ * @author Yuan Suarez
  */
 public class CarManager implements IReportGenerator<CarReport> {
 
     private Database<Car> carDatabase;
     private Database<Rental> rentalDatabase;
 
+    /**
+     * Constructs a {@code CarManager} with the specified car and rental
+     * databases.
+     *
+     * @param carDatabase the database containing car information
+     * @param rentalDatabase the database containing rental information
+     */
     public CarManager(Database<Car> carDatabase, Database<Rental> rentalDatabase) {
         this.carDatabase = carDatabase;
         this.rentalDatabase = rentalDatabase;
     }
 
+    /**
+     * Gets the car database.
+     *
+     * @return the car database
+     */
     public Database<Car> getDatabase() {
         return carDatabase;
     }
@@ -61,8 +78,6 @@ public class CarManager implements IReportGenerator<CarReport> {
      * Generates a report that shows the properties and availability of each
      * {@code Car} object.
      *
-     * @param rentalService The {@code RentalService} instance required to check
-     * the availability of each {@code Car} object.
      * @return an {@code ArrayList} of {@code CarReport} objects.
      */
     public ArrayList<CarReport> generateReport() {

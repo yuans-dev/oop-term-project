@@ -8,17 +8,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
+ * Manages car rentals.
+ * <p>
+ * This class provides functionalities to check car availability, rent cars,
+ * remove rentals, and generate rental reports.
+ * </p>
  *
- * @author u1ben
+ * @author Yuan Suarez
  */
 public class RentalManager implements IReportGenerator<RentalReport> {
 
     private Database<Rental> database;
 
+    /**
+     * Constructs a {@code RentalManager} with the specified rental database.
+     *
+     * @param database the database containing rental information
+     */
     public RentalManager(Database<Rental> database) {
         this.database = database;
     }
 
+    /**
+     * Gets the rental database.
+     *
+     * @return the rental database
+     */
     public Database<Rental> getDatabase() {
         return database;
     }
