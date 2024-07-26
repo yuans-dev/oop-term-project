@@ -120,6 +120,10 @@ public class MainForm extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         rentInactiveCheckBox_report = new javax.swing.JCheckBox();
         jLabel23 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        availableUntilTextField_report = new javax.swing.JFormattedTextField();
+        availableFromTextField_report = new javax.swing.JFormattedTextField();
         pnlCenter = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportsTable = new javax.swing.JTable();
@@ -752,6 +756,7 @@ public class MainForm extends javax.swing.JFrame {
         priceMinTextField_report.setForeground(new java.awt.Color(204, 204, 204));
         priceMinTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -852,10 +857,65 @@ public class MainForm extends javax.swing.JFrame {
         jLabel23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 3;
         reportControls.add(jLabel23, gridBagConstraints);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel19.setText("Availability");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        reportControls.add(jLabel19, gridBagConstraints);
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel24.setText("-");
+        jLabel24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        reportControls.add(jLabel24, gridBagConstraints);
+
+        availableUntilTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        availableUntilTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        availableUntilTextField_report.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/dd/yy"))));
+        availableUntilTextField_report.setCaretColor(new java.awt.Color(255, 255, 255));
+        availableUntilTextField_report.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        availableUntilTextField_report.setInputVerifier(new RentDateVerifier());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.weightx = 1.9;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(availableUntilTextField_report, gridBagConstraints);
+
+        availableFromTextField_report.setBackground(new java.awt.Color(44, 52, 58));
+        availableFromTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        availableFromTextField_report.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/dd/yy"))));
+        availableFromTextField_report.setCaretColor(new java.awt.Color(255, 255, 255));
+        availableFromTextField_report.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        availableFromTextField_report.setInputVerifier(new RentDateVerifier());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 3;
+        gridBagConstraints.weightx = 1.9;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        reportControls.add(availableFromTextField_report, gridBagConstraints);
 
         sideTab.addTab("Reports", reportControls);
 
@@ -962,7 +1022,11 @@ public class MainForm extends javax.swing.JFrame {
         var description = descriptionTextField_report.getText().toLowerCase();
         var priceMinText = priceMinTextField_report.getText();
         var priceMaxText = priceMaxTextField_report.getText();
+        var availableFromText = availableFromTextField_report.getText();
+        var availableUntilText = availableUntilTextField_report.getText();
 
+        LocalDate availableFrom = availableFromText.isBlank() ? LocalDate.MAX : LocalDate.parse(availableFromText, DateTimeFormatter.ofPattern("M/dd/yy"));
+        LocalDate availableUntil = availableUntilText.isBlank() ? LocalDate.MAX : LocalDate.parse(availableUntilText, DateTimeFormatter.ofPattern("M/dd/yy"));
         double priceMin = priceMinText.isBlank() ? Double.NEGATIVE_INFINITY : Double.parseDouble(priceMinText);
         double priceMax = priceMaxText.isBlank() ? Double.POSITIVE_INFINITY : Double.parseDouble(priceMaxText);
 
@@ -973,6 +1037,7 @@ public class MainForm extends javax.swing.JFrame {
                 .filter(report -> (description.isBlank() || report.getCar().getDescription().toLowerCase().contains(description)))
                 .filter(report -> (priceMin <= report.getCar().getPrice()))
                 .filter(report -> (report.getCar().getPrice() <= priceMax))
+                .filter(report -> (rentalManager.isCarAvailable(report.getCar(), availableFrom, availableUntil)))
                 .collect(Collectors.toCollection(ArrayList::new));
 
         updateCarTable(filterResult);
@@ -1120,6 +1185,8 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField availableFromTextField_report;
+    private javax.swing.JFormattedTextField availableUntilTextField_report;
     private javax.swing.JLabel brandLabel_rent;
     private javax.swing.JTextField brandTextField_add;
     private javax.swing.JTextField brandTextField_report;
@@ -1142,11 +1209,13 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
