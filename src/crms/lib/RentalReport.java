@@ -34,8 +34,8 @@ public class RentalReport {
     public RentalReport(Rental rental) {
         this.rental = rental;
         this.duration = formatPeriod(rental.getRentalPeriod());
-        this.status = LocalDate.now().isBefore(rental.getEndDate())
-                || LocalDate.now().equals(rental.getEndDate()) ? RentalStatus.Active : RentalStatus.Inactive;
+        this.status = (LocalDate.now().isBefore(rental.getEndDate())
+                || LocalDate.now().equals(rental.getEndDate())) && (LocalDate.now().isAfter(rental.getStartDate()) || LocalDate.now().equals(rental.getStartDate())) ? RentalStatus.Active : RentalStatus.Inactive;
     }
 
     /**
