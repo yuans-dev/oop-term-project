@@ -339,13 +339,15 @@ public class MainForm extends javax.swing.JFrame {
         descriptionLabel_rent.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         descriptionLabel_rent.setForeground(new java.awt.Color(204, 204, 204));
         descriptionLabel_rent.setText("None");
+        descriptionLabel_rent.setMaximumSize(new java.awt.Dimension(0, 17));
+        descriptionLabel_rent.setMinimumSize(new java.awt.Dimension(0, 17));
+        descriptionLabel_rent.setPreferredSize(new java.awt.Dimension(0, 17));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.ipady = 7;
-        gridBagConstraints.weightx = 1.9;
         gridBagConstraints.insets = new java.awt.Insets(0, 16, 0, 0);
         rentalServiceControls.add(descriptionLabel_rent, gridBagConstraints);
 
@@ -441,7 +443,7 @@ public class MainForm extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setOpaque(true);
-        jSeparator3.setPreferredSize(new java.awt.Dimension(100, 3));
+        jSeparator3.setPreferredSize(new java.awt.Dimension(1, 3));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;

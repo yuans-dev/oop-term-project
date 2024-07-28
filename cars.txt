@@ -1,10 +1,49 @@
-ED09###Toyota###Vios###New###3000.0
-5198###Toyota###Innova###New###5000.0
-68D4###Honda###Civic###New###4000.0
-6AD3###Honda###Civic###New###4000.0
-7A85###Honda###Civic###New###4000.0
-D07A###Honda###Civic###New###4000.0
-8761###Toyota###Vios###New###4000.0
-7555###Toyota###Vios###New###10000.0
-CF79###Toyota###Prius###Blue###3400.0
-4C32###Toyota###Fortuner###New###3700.0
+1A3F###Toyota###Camry###Comfortable midsize sedan###2250.0
+2B7E###Honda###Civic###Compact car with excellent fuel economy###2000.0
+3C9D###Ford###Mustang###Iconic sports car with powerful engine###3500.0
+4D2A###Chevrolet###Malibu###Midsize sedan with smooth ride###2400.0
+5E6B###Nissan###Altima###Reliable sedan with advanced safety features###2300.0
+6F8C###Hyundai###Elantra###Compact sedan with modern design###2100.0
+7A9E###BMW###3 Series###Luxury sedan with sporty performance###4500.0
+8B7D###Audi###A4###Sophisticated sedan with high-tech features###4400.0
+9C6A###Mercedes-Benz###C-Class###Premium sedan with cutting-edge technology###4700.0
+A5F4###Lexus###ES###Luxurious and quiet midsize sedan###4200.0
+B3E7###Subaru###Impreza###Compact car with all-wheel drive###2200.0
+C4A9###Mazda###3###Stylish compact car with great handling###2050.0
+D2B8###Volkswagen###Passat###Midsize sedan with European styling###2500.0
+E1D3###Kia###Optima###Spacious sedan with advanced safety features###2150.0
+F8C6###Tesla###Model 3###Electric sedan with impressive range###4800.0
+1B4D###Volvo###S60###Safe and comfortable luxury sedan###4300.0
+2C3E###Jaguar###XE###Sporty luxury sedan with dynamic handling###4600.0
+3D7A###Alfa Romeo###Giulia###Stylish Italian sedan with powerful engine###4700.0
+4E5F###Acura###TLX###Sporty and refined midsize sedan###4100.0
+5F6D###Infiniti###Q50###Luxury sedan with powerful engine###4200.0
+6A8B###Genesis###G70###Luxury sedan with sporty performance###4300.0
+7B3C###Cadillac###CTS###American luxury sedan with powerful engine###4400.0
+8C9E###Chrysler###300###Large sedan with bold styling###3800.0
+9D2A###Dodge###Charger###Full-size sedan with muscle car performance###3600.0
+A1B4###Lincoln###MKZ###Luxury sedan with smooth ride###3900.0
+B2C7###Buick###Regal###Midsize sedan with upscale features###3400.0
+C3D9###Porsche###Panamera###High-performance luxury sedan###6000.0
+D4E5###Maserati###Ghibli###Exotic Italian sedan with powerful engine###5500.0
+E6F3###Bentley###Flying Spur###Ultra-luxury sedan with premium features###12000.0
+F7A1###Rolls-Royce###Ghost###Ultimate luxury sedan with unparalleled comfort###15000.0
+1E2F###Aston Martin###Rapide###High-performance luxury sports sedan###8000.0
+2F3B###McLaren###GT###Exotic luxury grand tourer###10000.0
+3A4D###Ferrari###GTC4Lusso###High-performance luxury car with AWD###13000.0
+4B5E###Lamborghini###Huracán###Exotic sports car with V10 engine###14000.0
+5C6F###Pagani###Huayra###Ultra-exotic hypercar with bespoke features###20000.0
+6D7A###Koenigsegg###Regera###Hypercar with innovative hybrid powertrain###25000.0
+7E8B###Bugatti###Chiron###Ultimate hypercar with unparalleled performance###30000.0
+8F9C###Rimac###C_Two###Electric hypercar with blistering acceleration###28000.0
+9A1D###Lucid###Air###Luxury electric sedan with long range###5000.0
+A2B3###Polestar###2###Electric performance fastback###4500.0
+B4C6###Rivian###R1T###Electric adventure vehicle###4800.0
+C5D8###Fisker###Ocean###Electric SUV with sustainable design###4000.0
+D6E9###Hummer###EV###Electric truck with off-road capabilities###5200.0
+E7F1###GMC###Sierra###Full-size truck with premium features###3500.0
+F9A2###Ram###1500###Full-size pickup with smooth ride###3300.0
+1B2C###Jeep###Grand Cherokee###Midsize SUV with off-road capability###3700.0
+2C3D###Land Rover###Discovery###Luxury SUV with off-road prowess###5500.0
+3D4E###Range Rover###Sport###Luxury SUV with sporty performance###7000.0
+4E5F###Toyota###Land Cruiser###Legendary off-road SUV with luxury features###6500.0
