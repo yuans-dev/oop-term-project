@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author u1ben
  */
-public class RentalTableModel extends AbstractTableModel implements IReportTableModel {
+public class RentalTableModel extends AbstractTableModel implements IReportTableModel<RentalReport> {
 
     private final ArrayList<RentalReport> reports;
     private final String[] columnNames = {"ID", "Unit", "Rent From", "Rent Until", "Duration", "Status"};

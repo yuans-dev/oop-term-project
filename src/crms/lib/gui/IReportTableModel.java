@@ -5,8 +5,8 @@
 package crms.lib.gui;
 
 /**
- *
- * @author u1ben
+ * @param <T> Report type
+ * @author Yuan Suarez
  */
 public interface IReportTableModel<T> {
 

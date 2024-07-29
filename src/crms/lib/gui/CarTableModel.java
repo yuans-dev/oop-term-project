@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author u1ben
  */
-public class CarTableModel extends AbstractTableModel implements IReportTableModel {
+public class CarTableModel extends AbstractTableModel implements IReportTableModel<CarReport> {
 
     private final ArrayList<CarReport> reports;
     private final Class[] columnClasses = new Class[]{String.class, String.class, String.class, String.class, String.class, Double.class};
