@@ -33,9 +33,15 @@ public class RentalReport {
      */
     public RentalReport(Rental rental) {
         this.rental = rental;
-        this.duration = formatPeriod(rental.getRentalPeriod());
+
         this.status = (LocalDate.now().isBefore(rental.getEndDate())
-                || LocalDate.now().equals(rental.getEndDate())) && (LocalDate.now().isAfter(rental.getStartDate()) || LocalDate.now().equals(rental.getStartDate())) ? RentalStatus.Active : RentalStatus.Inactive;
+                || LocalDate.now().equals(rental.getEndDate()))
+                && (LocalDate.now().isAfter(rental.getStartDate())
+                || LocalDate.now().equals(rental.getStartDate()))
+                ? RentalStatus.Active : RentalStatus.Inactive;
+        this.duration = status == RentalStatus.Inactive
+                ? formatPeriod(rental.getRentalPeriod())
+                : formatPeriod(rental.getRentalPeriod()) + " (" + formatPeriod(Period.between(LocalDate.now(), rental.getEndDate())) + " remaining)";
     }
 
     /**

@@ -379,6 +379,7 @@ public class MainForm extends javax.swing.JFrame {
         rentFromDate_rent.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/dd/yy"))));
         rentFromDate_rent.setCaretColor(new java.awt.Color(255, 255, 255));
         rentFromDate_rent.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        rentFromDate_rent.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         rentFromDate_rent.setInputVerifier(new RentDateVerifier());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -395,6 +396,7 @@ public class MainForm extends javax.swing.JFrame {
         rentUntilDate_rent.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/dd/yy"))));
         rentUntilDate_rent.setCaretColor(new java.awt.Color(255, 255, 255));
         rentUntilDate_rent.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        rentUntilDate_rent.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         rentUntilDate_rent.setInputVerifier(new RentDateVerifier());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -625,6 +627,7 @@ public class MainForm extends javax.swing.JFrame {
         priceTextField_add.setForeground(new java.awt.Color(204, 204, 204));
         priceTextField_add.setCaretColor(new java.awt.Color(255, 255, 255));
         priceTextField_add.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        priceTextField_add.setInputVerifier(new crms.lib.gui.NumberVerifier());
         priceTextField_add.setPreferredSize(new java.awt.Dimension(200, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -752,6 +755,7 @@ public class MainForm extends javax.swing.JFrame {
 
         priceMinTextField_report.setBackground(new java.awt.Color(44, 52, 58));
         priceMinTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        priceMinTextField_report.setInputVerifier(new crms.lib.gui.NumberVerifier());
         priceMinTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -763,6 +767,7 @@ public class MainForm extends javax.swing.JFrame {
 
         priceMaxTextField_report.setBackground(new java.awt.Color(44, 52, 58));
         priceMaxTextField_report.setForeground(new java.awt.Color(204, 204, 204));
+        priceMaxTextField_report.setInputVerifier(new crms.lib.gui.NumberVerifier());
         priceMaxTextField_report.setPreferredSize(new java.awt.Dimension(250, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -888,6 +893,7 @@ public class MainForm extends javax.swing.JFrame {
         availableUntilTextField_report.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/dd/yy"))));
         availableUntilTextField_report.setCaretColor(new java.awt.Color(255, 255, 255));
         availableUntilTextField_report.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        availableUntilTextField_report.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         availableUntilTextField_report.setInputVerifier(new RentDateVerifier());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -904,6 +910,7 @@ public class MainForm extends javax.swing.JFrame {
         availableFromTextField_report.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M/dd/yy"))));
         availableFromTextField_report.setCaretColor(new java.awt.Color(255, 255, 255));
         availableFromTextField_report.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        availableFromTextField_report.setFocusLostBehavior(javax.swing.JFormattedTextField.COMMIT);
         availableFromTextField_report.setInputVerifier(new RentDateVerifier());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1136,6 +1143,9 @@ public class MainForm extends javax.swing.JFrame {
                 var value = idTextField_rent.getText().trim();
                 new Thread(() -> {
                     var car = CarDatabase.getInstance().getItemById(value);
+                    if (car == null) {
+                        return;
+                    }
                     brandLabel_rent.setText(car.getBrand());
                     modelLabel_rent.setText(car.getModel());
                     descriptionLabel_rent.setText(car.getDescription());
