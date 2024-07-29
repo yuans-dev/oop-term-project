@@ -53,6 +53,7 @@ public class RentalTableModel extends AbstractTableModel implements IReportTable
         }
     }
 
+    @Override
     public RentalReport getReportAt(int rowIndex) {
         return reports.get(rowIndex);
     }

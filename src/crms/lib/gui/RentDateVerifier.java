@@ -20,14 +20,12 @@ public class RentDateVerifier extends InputVerifier {
     public boolean verify(JComponent input) {
         JFormattedTextField tf = (JFormattedTextField) input;
         try {
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M/d/yy");
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("M/dd/yy");
             LocalDate date = LocalDate.parse(tf.getText(), dateTimeFormatter);
             return date.equals(LocalDate.now()) || date.isAfter(LocalDate.now());
         } catch (Exception e) {
+            return tf.getText().isBlank();
 
-            return false;
         }
-
     }
-
 }

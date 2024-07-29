@@ -47,3 +47,4 @@ F9A2###Ram###1500###Full-size pickup with smooth ride###3300.0
 2C3D###Land Rover###Discovery###Luxury SUV with off-road prowess###5500.0
 3D4E###Range Rover###Sport###Luxury SUV with sporty performance###7000.0
 4E5F###Toyota###Land Cruiser###Legendary off-road SUV with luxury features###6500.0
+D7D8###Audi###R8 V10###Luxury supercar with V10 engine###32000.0

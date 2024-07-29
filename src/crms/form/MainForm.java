@@ -946,6 +946,7 @@ public class MainForm extends javax.swing.JFrame {
             }
         ));
         reportsTable.setGridColor(new java.awt.Color(34, 40, 44));
+        reportsTable.setRowSelectionAllowed(false);
         reportsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         reportsTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(reportsTable);
@@ -1130,6 +1131,10 @@ public class MainForm extends javax.swing.JFrame {
 
             public void warn() {
                 if (idTextField_rent.getText().isBlank()) {
+                    brandLabel_rent.setText("None");
+                    modelLabel_rent.setText("None");
+                    descriptionLabel_rent.setText("None");
+                    priceLabel_rent.setText("None");
                     return;
                 }
                 var value = idTextField_rent.getText().trim();
@@ -1143,6 +1148,8 @@ public class MainForm extends javax.swing.JFrame {
 
             }
         });
+
+        reportsTable.setAutoCreateRowSorter(true);
 
         //update rental tab when selecting from table
         reportsTable.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {

@@ -15,6 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class CarTableModel extends AbstractTableModel implements IReportTableModel {
 
     private final ArrayList<CarReport> reports;
+    private final Class[] columnClasses = new Class[]{String.class, String.class, String.class, String.class, String.class, Double.class};
     private final String[] columnNames = {"ID", "Brand", "Model", "Description", "Availability", "Price (php/day)"};
 
     public CarTableModel(ArrayList<CarReport> reports) {
@@ -52,6 +53,15 @@ public class CarTableModel extends AbstractTableModel implements IReportTableMod
         }
     }
 
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        if (columnIndex < columnClasses.length) {
+            return columnClasses[columnIndex];
+        }
+        return super.getColumnClass(columnIndex);
+    }
+
+    @Override
     public CarReport getReportAt(int rowIndex) {
         return reports.get(rowIndex);
     }
