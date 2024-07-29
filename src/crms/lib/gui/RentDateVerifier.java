@@ -12,7 +12,7 @@ import javax.swing.JFormattedTextField;
 
 /**
  *
- * @author u1ben
+ * @author Yuan Suarez
  */
 public class RentDateVerifier extends InputVerifier {
 

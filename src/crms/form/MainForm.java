@@ -26,10 +26,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 
-/**
- *
- * @author u1ben
- */
 public class MainForm extends javax.swing.JFrame {
 
     private CarManager carManager;

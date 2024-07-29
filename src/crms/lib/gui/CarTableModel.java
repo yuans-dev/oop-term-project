@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author u1ben
+ * @author Yuan Suarez
  */
 public class CarTableModel extends AbstractTableModel implements IReportTableModel<CarReport> {
 

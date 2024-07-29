@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author u1ben
+ * @author Yuan Suarez
  */
 public class RentalTableModel extends AbstractTableModel implements IReportTableModel<RentalReport> {
 
