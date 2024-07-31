@@ -68,6 +68,7 @@ public class CarDatabase extends Database<Car> {
      * @return the {@code Car} object with the specified ID, or {@code null} if
      * not found.
      */
+    @Override
     public Car getItemById(String id) {
         for (Car car : dataList) {
             if (car.getId() == null ? id == null : car.getId().equals(id)) {
@@ -80,19 +81,20 @@ public class CarDatabase extends Database<Car> {
     /**
      * Fetches the recorded {@code Car} objects from the file {@code cars.txt}.
      */
+    @Override
     public void fetchFromDisk() {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             while (reader.ready()) {
                 String text = reader.readLine();
                 String[] lineComponents = text.split("###");
                 dataList.add(
-                        new Car(
-                                lineComponents[0], // id
-                                lineComponents[1], // brand
-                                lineComponents[2], // model
-                                lineComponents[3], // description
-                                Double.parseDouble(lineComponents[4]) // price
-                        ));
+                        new CarBuilder().setId(lineComponents[0])
+                                .setBrand(lineComponents[1])
+                                .setModel(lineComponents[2])
+                                .setDescription(lineComponents[3])
+                                .setPrice(Double.parseDouble(lineComponents[4])).getResult()
+                );
+
             }
         } catch (IOException | NumberFormatException e) {
             System.out.println("An exception has occurred while reading " + filename);

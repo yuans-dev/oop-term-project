@@ -5,7 +5,7 @@
 package crms.form;
 
 import crms.lib.CarDatabase;
-import crms.lib.CarFactory;
+import crms.lib.CarBuilder;
 import crms.lib.CarManager;
 import crms.lib.CarReport;
 import crms.lib.Rental;
@@ -992,12 +992,13 @@ public class MainForm extends javax.swing.JFrame {
             return;
         }
         try {
-            var carFactory = new CarFactory(carManager.getDatabase());
-            var car = carFactory.createCar(brandTextField_add.getText(),
-                    modelTextField_add.getText(),
-                    descriptionTextField_add.getText(),
-                    Double.parseDouble(priceTextField_add.getText())
-            );
+            var carBuilder = new CarBuilder();
+            var car = carBuilder.setId(carManager.getDatabase())
+                    .setBrand(brandTextField_add.getText())
+                    .setModel(modelTextField_add.getText())
+                    .setDescription(descriptionTextField_add.getText())
+                    .setPrice(Double.parseDouble(priceTextField_add.getText())).getResult();
+
             carManager.tryAddCar(car);
             updateCarTable(carManager.generateReport());
         } catch (Exception e) {

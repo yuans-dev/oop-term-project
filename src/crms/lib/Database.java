@@ -17,11 +17,6 @@ import java.util.ArrayList;
 public abstract class Database<T> {
 
     /**
-     * The filename where the data is stored.
-     */
-    protected String filename;
-
-    /**
      * The list that holds the objects of type {@code T}.
      */
     protected ArrayList<T> dataList;

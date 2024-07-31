@@ -17,28 +17,29 @@ package crms.lib;
 public class Car {
 
     private String description;
-    private final String brand;
-    private final String model;
+    private String brand;
+    private String model;
     private double price;
-    private final String id;
+    private String id;
 
-    /**
-     * Constructs a {@code Car} object with the specified ID, brand, model,
-     * description, and price.
-     *
-     *
-     * @param id the unique ID of the car
-     * @param brand the brand of the car
-     * @param model the model of the car
-     * @param description a description of the car
-     * @param price the price of the car
-     */
-    public Car(String id, String brand, String model, String description, double price) {
+    public Car() {
+        brand = "Unknown brand";
+        model = "Unknown model";
+        price = 0;
+        id = "0000";
+        description = "No description";
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setId(String id) {
         this.id = id;
-        this.description = description.trim();
-        this.brand = brand.trim();
-        this.model = model.trim();
-        this.price = price;
     }
 
     /**

@@ -7,44 +7,60 @@ package crms.lib;
 import java.util.Random;
 
 /**
- * CarFactory is a factory class designed to create {@code Car} objects
+ * CarBuilder is a factory class designed to create {@code Car} objects
  * <p>
  * Its main purpose is to make sure that created {@code Car} objects always have
  * a unique ID.</p>
  *
  * @author Yuan Suarez
  */
-public class CarFactory {
+public class CarBuilder {
 
-    private final Database<Car> carDatabase;
+    private Car result;
 
     /**
      * Constructs a {@code CarFactory} object.
-     *
-     * @param carInventory The {@code CarInventory} instance required for some
-     * methods.
      */
-    public CarFactory(Database<Car> carDatabase) {
-        this.carDatabase = carDatabase;
+    public CarBuilder() {
+        result = new Car();
     }
 
-    /**
-     * Creates a {@code Car} object with specified brand, model, description,
-     * and price. This method makes sure that the {@code Car} object has a
-     * unique ID;
-     *
-     * @param brand Brand of the car
-     * @param model Model of the car
-     * @param description Description of the car
-     * @param price Price of the car
-     * @return {@code Car} object with a unique ID
-     */
-    public Car createCar(String brand, String model, String description, double price) {
+    public CarBuilder setId(Database<Car> carDatabase) {
         String id;
         do {
             id = generateRandomId();
         } while (carDatabase.getItemById(id) != null);//Regenerate if it returns a car object
-        return new Car(id, brand, model, description, price);
+        result.setId(id);
+        return this;
+    }
+
+    public CarBuilder setId(String id) {
+        result.setId(id);
+        return this;
+    }
+
+    public CarBuilder setBrand(String brand) {
+        result.setBrand(brand);
+        return this;
+    }
+
+    public CarBuilder setModel(String model) {
+        result.setModel(model);
+        return this;
+    }
+
+    public CarBuilder setDescription(String description) {
+        result.setDescription(description);
+        return this;
+    }
+
+    public CarBuilder setPrice(double price) {
+        result.setPrice(price);
+        return this;
+    }
+
+    public Car getResult() {
+        return result;
     }
 
     /**

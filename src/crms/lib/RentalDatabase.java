@@ -70,6 +70,7 @@ public class RentalDatabase extends Database<Rental> {
      * {@code rentals.txt}.
      *
      */
+    @Override
     public void fetchFromDisk() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -100,6 +101,7 @@ public class RentalDatabase extends Database<Rental> {
     /**
      * Saves the list of {@code Rental} objects to the file {@code rentals.txt}.
      */
+    @Override
     public void saveToDisk() {
         try {
             try (FileWriter fileWriter = new FileWriter(filename)) {
