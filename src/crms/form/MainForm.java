@@ -5,7 +5,6 @@
 package crms.form;
 
 import crms.lib.CarDatabase;
-import crms.lib.CarBuilder;
 import crms.lib.CarManager;
 import crms.lib.CarReport;
 import crms.lib.Rental;
@@ -13,6 +12,7 @@ import crms.lib.RentalDatabase;
 import crms.lib.RentalManager;
 import crms.lib.RentalReport;
 import crms.lib.RentalReport.RentalStatus;
+import crms.lib.Reporter;
 import crms.lib.gui.CarTableModel;
 import crms.lib.gui.IReportTableModel;
 import crms.lib.gui.RentDateVerifier;
@@ -992,13 +992,11 @@ public class MainForm extends javax.swing.JFrame {
             return;
         }
         try {
-            var carBuilder = new CarBuilder();
-            var car = carBuilder.setId(carManager.getDatabase())
-                    .setBrand(brandTextField_add.getText())
-                    .setModel(modelTextField_add.getText())
-                    .setDescription(descriptionTextField_add.getText())
-                    .setPrice(Double.parseDouble(priceTextField_add.getText())).getResult();
-
+            var car = carManager.createCar(brandTextField_add.getText(),
+                    modelTextField_add.getText(),
+                    descriptionTextField_add.getText(),
+                    Double.parseDouble(priceTextField_add.getText())
+            );
             carManager.tryAddCar(car);
             updateCarTable(carManager.generateReport());
         } catch (Exception e) {
@@ -1185,8 +1183,14 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void initializeProgram() {
-        carManager = new CarManager(CarDatabase.getInstance(), RentalDatabase.getInstance());
-        rentalManager = new RentalManager(RentalDatabase.getInstance());
+        Reporter mediator = new Reporter();
+
+        carManager = new CarManager(CarDatabase.getInstance(), mediator);
+        rentalManager = new RentalManager(RentalDatabase.getInstance(), mediator);
+
+        mediator.setCarManager(carManager);
+        mediator.setRentalManager(rentalManager);
+
         updateCarTable(carManager.generateReport());
     }
 

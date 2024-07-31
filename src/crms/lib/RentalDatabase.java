@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package crms.lib;
 
 import java.io.BufferedReader;
@@ -11,36 +7,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- * The {@code RentalDatabase} class is responsible for managing rental
- * operations including fetching recorded {@code Rental} objects from the local
- * database, checking car availability, and generating rental reports.
- *
- * <p>
- * This class follows the singleton pattern to ensure that only one instance of
- * {@code RentalDatabase} is created.</p>
- *
- * @author Yuan Suarez
- */
 public class RentalDatabase extends Database<Rental> {
 
     private final String filename = "rentals.txt";
     private static RentalDatabase instance;
 
-    /**
-     * Private constructor to prevent instantiation. Initializes the rentals
-     * list.
-     */
     private RentalDatabase() {
         dataList = new ArrayList<>();
     }
 
-    /**
-     * Returns the singleton instance of {@code RentalDatabase}. If the instance
-     * does not exist, it is created and the rentals are fetched from disk.
-     *
-     * @return the singleton instance of {@code RentalDatabase}.
-     */
     public static RentalDatabase getInstance() {
         if (instance == null) {
             instance = new RentalDatabase();
@@ -49,13 +24,7 @@ public class RentalDatabase extends Database<Rental> {
         return instance;
     }
 
-    /**
-     * Retrieves a rental by its ID.
-     *
-     * @param id the ID of the rental.
-     * @return the {@code Rental} with the specified ID, or {@code null} if not
-     * found.
-     */
+    @Override
     public Rental getItemById(String id) {
         for (Rental r : dataList) {
             if (r.getId() == null ? id == null : r.getId().equals(id)) {
@@ -65,11 +34,6 @@ public class RentalDatabase extends Database<Rental> {
         return null;
     }
 
-    /**
-     * Fetches the recorded {@code Rental} objects from the file
-     * {@code rentals.txt}.
-     *
-     */
     @Override
     public void fetchFromDisk() {
         try {
@@ -98,9 +62,6 @@ public class RentalDatabase extends Database<Rental> {
         }
     }
 
-    /**
-     * Saves the list of {@code Rental} objects to the file {@code rentals.txt}.
-     */
     @Override
     public void saveToDisk() {
         try {
